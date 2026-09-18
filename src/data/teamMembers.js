@@ -1,4 +1,4 @@
-import { Camera, Code2, Palette } from 'lucide-react';
+import { Camera, Code2, Megaphone, Palette } from 'lucide-react';
 import { workCatalogue } from './galleryItems';
 
 /*
@@ -58,8 +58,7 @@ const teamMembers = [
     awards: '8 Years Industry Craft // Visual Storytelling & Design',
     socials: {
       linkedin: 'https://www.linkedin.com/in/whyzo-creatives-9b3212438/',
-      instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0',
-      portfolio: 'https://behance.net'
+      instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
     },
     works: [
       {
@@ -104,67 +103,66 @@ const teamMembers = [
     ]
   },
   {
-    id: 'marcus-thorne',
+    id: 'anzil-s',
     num: '03',
-    name: 'Marcus Thorne',
-    role: 'Principal WebGL Architect',
-    discipline: 'Spatial UI & 3D Engineering',
-    icon: Code2,
-    tag: 'FULL-STACK // WEBGL 3D',
-    stat: '60 FPS 3D',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
-    bio: 'Engineering lightning-fast dark digital flagships with Three.js shaders, 60fps WebGL particle fields, and robust component architecture built for modern browser hardware.',
+    name: 'Anzil S',
+    role: 'Sales & Marketing',
+    discipline: 'Client Partnerships & Campaign Strategy',
+    icon: Megaphone,
+    tag: 'GROWTH // CLIENT PARTNERSHIPS',
+    stat: '40+ Accounts',
+    image: '/team/anzil-s.jpg',
+    bio: 'Connecting brands with the studio floor - scoping campaigns, shaping production budgets, and turning first conversations into long-running client partnerships across the region.',
     specialties: [
-      'Custom Three.js & GLSL Shaders',
-      'React 19 & Next-Gen State Engines',
-      'Spatial UX & Micro-Interactions',
-      'Lighthouse 99+ Performance Scoring'
+      'Client Acquisition & Retention',
+      'Campaign Scoping & Budgeting',
+      'Brand Partnership Strategy',
+      'Market & Competitor Research'
     ],
-    awards: 'Awwwards Site of the Day // FWA of the Day',
+    awards: 'Regional Growth Lead // 40+ Brand Accounts',
     socials: {
-      linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
-      portfolio: 'https://github.com'
+      linkedin: 'https://www.linkedin.com/in/whyzo-creatives-9b3212438/',
+      instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
     },
     works: [
       {
-        id: 'work-08',
-        title: 'Spatial Three.js Digital Flagship',
-        category: 'web',
-        categoryLabel: 'Brand & Web Architecture',
-        client: 'Lumina Digital Architecture',
-        year: '2026',
-        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=700&auto=format&fit=crop',
-        video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-        metrics: '60 FPS WebGL // Awwwards Site of the Day',
-        deliverables: ['Custom GLSL Shaders', 'Three.js 3D Canvas', 'React 19 Platform', 'Lighthouse 99+ Rating'],
-        description: 'End-to-end engineering of a luxury dark spatial web platform featuring interactive 3D particle shaders and sub-second load times.'
-      },
-      {
-        id: 'work-06',
-        title: 'Kuro Tokyo Minimalist Identity & Stills',
-        category: 'web',
-        categoryLabel: 'Brand & Web Architecture',
-        client: 'Kuro Roasters Tokyo',
+        id: 'work-anz-01',
+        title: 'GITEX Global Account Campaign',
+        category: 'corporate',
+        categoryLabel: 'Corporate & Brand Film',
+        client: 'Dubai World Trade Centre',
         year: '2025',
-        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=700&auto=format&fit=crop',
-        video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-        metrics: 'Design Award Winner 2025 // 3 New Flagship Stores',
-        deliverables: ['Packaging & Label Design', 'Product Photography', 'Brand Film', 'E-commerce Web Dev'],
-        description: 'Japanese minimalist coffee packaging, slow-motion brewing videography, and sleek e-commerce website development.'
+        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577552/events/opt_GITEX_2025.jpg',
+        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577552/events/opt_GITEX_2025.mp4',
+        metrics: '180+ Countries // Multi-Stage Account Win',
+        deliverables: ['Account Scoping', 'Budget & Deliverable Planning', 'On-Site Client Liaison', 'Post-Campaign Reporting'],
+        description: 'End-to-end account management for the studio coverage of the world largest technology exhibition, from first pitch through delivery.'
       },
       {
-        id: 'work-11',
-        title: 'Zero-Latency WebGL Sound Visualizer',
-        category: 'web',
-        categoryLabel: 'Brand & Web Architecture',
-        client: 'Chronos Audio Systems',
+        id: 'work-anz-02',
+        title: 'AMARA Hospitality Partnership',
+        category: 'f&b',
+        categoryLabel: 'Food & Beverage Cinema',
+        client: 'AMARA Hospitality',
         year: '2026',
-        metrics: '120Hz Refresh // Web Audio API Integration',
-        deliverables: ['Web Audio Reactive Mesh', 'Post-Processing Bloom Pipeline', 'Mobile Touch Gestures'],
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=700&auto=format&fit=crop',
-        video: 'https://cdn.jsdelivr.net/gh/mediaelement/mediaelement-files@master/echo-hereweare.mp4',
-        description: 'Browser-native real-time 3D audio visualizer synthesizing low-frequency sound waves into fluid geometric distortions.'
+        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789578219/fb/AMARA.jpg',
+        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789578219/fb/AMARA.mp4',
+        metrics: '48% Table Booking Lift // Retained Account',
+        deliverables: ['Partnership Pitch', 'Content Calendar Strategy', 'Performance Review Cycle'],
+        description: 'Long-running hospitality partnership built from a single content pilot into a retained monthly production agreement.'
+      },
+      {
+        id: 'work-anz-03',
+        title: 'Starbucks Creator Campaign Rollout',
+        category: 'influencer',
+        categoryLabel: 'Creator & Influencer',
+        client: 'Starbucks Coffee ME',
+        year: '2026',
+        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577587/influencer/STARBUCKS.jpg',
+        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577587/influencer/STARBUCKS.mp4',
+        metrics: '5.2M Impressions // 18.4% Share Rate',
+        deliverables: ['Creator Sourcing & Negotiation', 'Campaign Brief', 'Deliverable Tracking', 'Results Reporting'],
+        description: 'Creator roster sourcing, commercial negotiation and campaign reporting for a regional lifestyle rollout.'
       }
     ]
   },

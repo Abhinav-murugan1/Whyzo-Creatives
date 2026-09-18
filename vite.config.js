@@ -24,8 +24,13 @@ export default defineConfig({
             if (id.includes('three') || id.includes('@react-three')) {
               return 'vendor-three'
             }
-            if (id.includes('gsap') || id.includes('motion')) {
-              return 'vendor-animation'
+            // gsap (StaggeredMenu) and motion (Footer, Services) ship separately so a change in
+            // one does not invalidate the other's cache entry
+            if (id.includes('gsap')) {
+              return 'vendor-gsap'
+            }
+            if (id.includes('motion')) {
+              return 'vendor-motion'
             }
             if (id.includes('@paper-design')) {
               return 'vendor-shaders'

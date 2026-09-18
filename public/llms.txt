@@ -4,7 +4,7 @@
 
 ## Overview
 - **Name**: Whyzo Creations (Whyzo Creatives)
-- **Website**: https://whyzocreations.com
+- **Website**: https://whyzocreatives.com
 - **Disciplines**: Commercial Videography, Editorial Photography, High-End Video Editing, Minimalist Graphic Design, Spatial Web Design, Generative AI Video Creation, Full-Stack WebGL Development.
 - **Global Hubs**: New York (SoHo Studio), London (Shoreditch Hub), Dubai (Design District), Tokyo (Shibuya Lab).
 
@@ -33,4 +33,4 @@
 
 ## Contact & Inquiries
 - **Project Scope**: Commercial Brand Films, Editorial Stills, AI Video VFX, Spatial Web Platforms.
-- **URL**: https://whyzocreations.com/#contact
+- **URL**: https://whyzocreatives.com/#contact

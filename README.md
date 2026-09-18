@@ -7,18 +7,18 @@ Official production repository for **Whyzo Creations** (Whyzo Creatives) — an 
 ## 🌐 Custom Domain & Production Setup
 
 ### Custom Domain Binding
-This project is configured for **`https://whyzocreations.com`**:
+This project is configured for **`https://whyzocreatives.com`**:
 - **CNAME File**: Automatically supplied in `public/CNAME` for GitHub Pages, Netlify, Vercel, and Cloudflare Pages.
 - **DNS Records**:
   - **Apex Domain (`@`)**: Add `A` records pointing to your hosting provider's IP addresses (e.g. `76.76.21.21` for Vercel, or `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` for GitHub Pages).
-  - **Subdomain (`www`)**: Add a `CNAME` record pointing to `whyzocreations.com` (or your platform's canonical cname host).
-- **Environment Configuration**: Set `VITE_SITE_URL=https://whyzocreations.com` if overriding default base URLs.
+  - **Subdomain (`www`)**: Add a `CNAME` record pointing to `whyzocreatives.com` (or your platform's canonical cname host).
+- **Environment Configuration**: Set `VITE_SITE_URL=https://whyzocreatives.com` if overriding default base URLs.
 
 ---
 
 ## 🔍 SEO & Machine Crawlers
 
-- **Canonical URL**: Dynamic canonical tags anchored to `https://whyzocreations.com/`.
+- **Canonical URL**: Dynamic canonical tags anchored to `https://whyzocreatives.com/`.
 - **Structured Data (JSON-LD)**:
   - `WebSite` Schema
   - `ProfessionalService` & `LocalBusiness` Schema (with multi-hub locations: NYC, London, Dubai, Tokyo, and 7 core creative disciplines)
@@ -106,7 +106,7 @@ Fixed:
 - `updatePageSEO` only moved the title and canonical. `og:description`, `twitter:description` and `og:url` kept their home-page values, so every shared member portfolio unfurled with the site-wide blurb and the home URL. All five tags now move together.
 - `public/404.html` carried no `robots` directive; it now sends `noindex, follow`.
 
-- Routing moved from fragments to **real paths** (`/team`, `/team/alex-vance`). Fragments are discarded by crawlers, so every route previously collapsed onto `https://whyzocreations.com/` as one indexable URL and the per-route canonicals all resolved to the home page. Each route is now its own document with its own canonical, `og:url`, title and description. `sitemap.xml` and the `BreadcrumbList` JSON-LD were updated to match, and the menu emits real `<a href>` links for crawlers while `preventDefault` keeps navigation client-side.
+- Routing moved from fragments to **real paths** (`/team`, `/team/alex-vance`). Fragments are discarded by crawlers, so every route previously collapsed onto `https://whyzocreatives.com/` as one indexable URL and the per-route canonicals all resolved to the home page. Each route is now its own document with its own canonical, `og:url`, title and description. `sitemap.xml` and the `BreadcrumbList` JSON-LD were updated to match, and the menu emits real `<a href>` links for crawlers while `preventDefault` keeps navigation client-side.
 - A missing route now sets `noindex, follow` at runtime, so `/whatever` cannot be indexed.
 
 Static hosts need a rewrite for a cold load of `/team/alex-vance` to reach the app at all:
@@ -117,7 +117,7 @@ Static hosts need a rewrite for a cold load of `/team/alex-vance` to reach the a
 | Netlify / Cloudflare Pages | `public/_redirects` |
 | Vercel | `vercel.json` rewrites |
 
-Old `#team/<id>` links are already in the wild, so `migrateLegacyHash()` rewrites them to the path equivalent before first render. Verified: `/?fresh=1#team/marcus-thorne` lands on `/team/marcus-thorne`.
+Old `#team/<id>` links are already in the wild, so `migrateLegacyHash()` rewrites them to the path equivalent before first render. Verified: `/?fresh=1#team/marcus-thorne` lands on `/team/anzil-s`.
 
 ### Asset & Delivery Cleanup
 

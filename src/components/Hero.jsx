@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Suspense } from 'react';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
 import ShinyText from './reactbits/ShinyText';
 import { ArrowDownRight } from 'lucide-react';
 import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
@@ -10,6 +10,32 @@ import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
  * WebGL backdrop attaches as soon as its chunk lands (it already had a warm-up delay of its own).
  */
 const Beams = React.lazy(() => import('./reactbits/Beams'));
+
+/*
+ * Lazy alone was not enough. React renders Hero on the first commit, hits the Suspense boundary and
+ * fires the dynamic import immediately, so the ~221 kB gzipped three.js chunk still downloaded inside
+ * the critical window - measured at 1700 ms on the live site, the slowest resource on the page, for a
+ * decorative backdrop. Holding the import until the browser is idle hands the headline, copy and CTAs
+ * the full pipe first. The backdrop's own 1.8s reveal covers the later arrival, and the hero already
+ * paints black with its grid overlay underneath, so nothing is ever blank.
+ */
+const useIdleMount = (timeout = 2500) => {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const request = window.requestIdleCallback;
+    if (typeof request !== 'function') {
+      // Safari has no requestIdleCallback - fall back to a macrotask after paint
+      const timer = setTimeout(() => setReady(true), 200);
+      return () => clearTimeout(timer);
+    }
+
+    const handle = request(() => setReady(true), { timeout });
+    return () => window.cancelIdleCallback?.(handle);
+  }, [timeout]);
+
+  return ready;
+};
 
 /* High-Performance Smooth Number Counter Component (0 React re-renders during animation) */
 const AnimatedCounter = React.memo(({ value, duration = 2000, decimals = 0, suffix = '' }) => {
@@ -63,6 +89,8 @@ const AnimatedCounter = React.memo(({ value, duration = 2000, decimals = 0, suff
 });
 
 const Hero = () => {
+  const backdropReady = useIdleMount();
+
   return (
     <section id="hero" className="relative min-h-screen w-full bg-black text-white flex flex-col justify-between overflow-hidden pt-36 sm:pt-56 md:pt-64 pb-20 sm:pb-36 md:pb-44">
       {/* 3D Beams Background Component from React Bits */}
@@ -73,6 +101,7 @@ const Hero = () => {
           snapped in. Mounted with Beams, the fade actually covers its arrival.
         */}
         <Suspense fallback={null}>
+          {backdropReady && (
           <div className="reveal-backdrop absolute inset-0 w-full h-full">
             <Beams
               beamWidth={2}
@@ -87,6 +116,7 @@ const Hero = () => {
               rotation={0}
             />
           </div>
+          )}
         </Suspense>
       </div>
 

@@ -4,7 +4,7 @@
 - **Legal Entity**: Whyzo Creations
 - **Studio Name**: Whyzo Creatives
 - **Tagline**: Minimalist Creative Media & Web Studio
-- **Domain**: https://whyzocreations.com
+- **Domain**: https://whyzocreatives.com
 - **Locations**:
   - New York: SoHo Studio
   - London: Shoreditch Hub
@@ -42,4 +42,4 @@
    - Deliverables: Custom React / Vite Web Platforms, Headless E-Commerce flagships, Three.js 3D Web Experiences, Lighthouse 99+ Speed Optimization.
 
 ## Inquiry Process
-Prospective clients can define project service requirements, industry category (F&B, Automotive, Events, Social Media Contents, Personal Branding, Influencer Marketing), budget ranges (<$5,000, $5,000-$15,000, $15,000-$50,000, $50,000+), and project briefs directly via the interactive inquiry portal at https://whyzocreations.com/#contact.
+Prospective clients can define project service requirements, industry category (F&B, Automotive, Events, Social Media Contents, Personal Branding, Influencer Marketing), budget ranges (<$5,000, $5,000-$15,000, $15,000-$50,000, $50,000+), and project briefs directly via the interactive inquiry portal at https://whyzocreatives.com/#contact.

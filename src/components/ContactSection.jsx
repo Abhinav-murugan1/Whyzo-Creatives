@@ -312,7 +312,8 @@ const ContactSection = ({ initialService }) => {
                 disabled={isSending}
                 className="w-full py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <span>{isSending ? 'Transmitting...' : 'Transmit Inquiry'}</span>
+                {/* Label stays put - a morphing "Transmitting..." read as a chat typing indicator */}
+                <span>Transmit Inquiry</span>
                 {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               </button>
 

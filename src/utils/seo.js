@@ -3,7 +3,7 @@
  * Updates document titles, meta descriptions, and canonical URLs on page/state navigation.
  */
 
-const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://whyzocreations.com';
+const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://whyzocreatives.com';
 
 const PAGE_META = {
   home: {

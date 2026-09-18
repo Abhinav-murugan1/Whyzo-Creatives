@@ -1,4 +1,5 @@
 import cloudinaryAssets from './cloudinaryAssets.json';
+import { previewVideo, sizedAsset } from '../lib/cloudinary';
 
 /*
  * The gallery wall draws from every asset published to Cloudinary. The entries below are the curated
@@ -390,9 +391,6 @@ const metricsFromAsset = asset => {
   return [dimensions, runtime].filter(Boolean).join(' // ') || undefined;
 };
 
-/* Matches a Cloudinary transformation component (so_0,f_jpg,q_auto) as opposed to a version (v123…) */
-const CLOUDINARY_TRANSFORM_TOKEN = /^[a-z]{1,3}_[^,/]+/;
-
 const genericCounters = {};
 const genericTitle = key => {
   genericCounters[key] = (genericCounters[key] || 0) + 1;
@@ -514,34 +512,13 @@ export const galleryItems = interleaveByCategory(workCatalogue);
  * Cloudinary serves masters at up to 2560x3840. Any surface that paints a catalogue image at card
  * size must ask for a capped derivative instead, or a single page pulls tens of megabytes.
  */
-export const sizedAsset = (url, width = 800) => {
-  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
-  if (/\/[wh]_\d+/.test(url)) return url;
-
-  const splitIndex = url.indexOf('/upload/');
-  const head = url.slice(0, splitIndex);
-  const tail = url.slice(splitIndex + '/upload/'.length);
-  const segments = tail.split('/');
-  const first = segments[0] || '';
-
-  if (first && !/^v\d+$/.test(first) && CLOUDINARY_TRANSFORM_TOKEN.test(first)) {
-    segments[0] = `${first},w_${width},c_limit`;
-    return `${head}/upload/${segments.join('/')}`;
-  }
-  return `${head}/upload/w_${width},c_limit/${tail}`;
-};
+export { sizedAsset };
 
 /*
  * Lightweight 480p preview derivative, matching what the gallery wall streams. Masters run to tens of
  * megabytes, so anything that plays inline on hover must request this instead.
  */
-export const previewVideo = url => {
-  if (!url) return null;
-  if (!url.includes('cloudinary.com') || !url.includes('/upload/')) return url;
-  const mp4 = url.replace(/\.(mov|webm|mkv)$/i, '.mp4');
-  if (mp4.includes('/w_480')) return mp4;
-  return mp4.replace('/upload/', '/upload/w_480,q_auto:eco,vc_h264,f_mp4/');
-};
+export { previewVideo };
 
 /* Catalogue split onto its nine Cloudinary shelves, shelves in CATEGORY_SEQUENCE order */
 export const workCatalogueByGroup = workCatalogue

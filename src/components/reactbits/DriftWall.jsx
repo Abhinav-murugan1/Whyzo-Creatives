@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './DriftWall.css';
+import { sizedAsset } from '../../lib/cloudinary';
 
 const DEFAULT_ITEMS = Array.from({ length: 15 }, (_, i) => {
   const ids = [1015, 1025, 1039, 1043, 1044, 1050, 1062, 1069, 1074, 1080, 1084, 106, 110, 133, 164];
@@ -35,31 +36,6 @@ const LOADER_APPEARANCE_DELAY = 400;
  */
 const PREWARM_LIMIT = 24;
 
-const CLOUDINARY_TRANSFORM_TOKEN = /^[a-z]{1,3}_[^,/]+/;
-
-/*
- * Cloudinary posters are delivered at full master resolution (up to 2560x3840) while a tile only ever
- * paints at ~250x158 CSS px. Requesting a width-capped derivative keeps the exact same framing but cuts
- * both transfer size and decoded bitmap memory by more than an order of magnitude.
- */
-const sizedPoster = (url, width = 600) => {
-  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
-  if (/\/[wh]_\d+/.test(url)) return url;
-
-  const splitIndex = url.indexOf('/upload/');
-  const head = url.slice(0, splitIndex);
-  const tail = url.slice(splitIndex + '/upload/'.length);
-  const segments = tail.split('/');
-  const first = segments[0] || '';
-
-  // Merge into an existing transformation component, otherwise prepend a fresh one
-  if (first && !/^v\d+$/.test(first) && CLOUDINARY_TRANSFORM_TOKEN.test(first)) {
-    segments[0] = `${first},w_${width},c_limit`;
-    return `${head}/upload/${segments.join('/')}`;
-  }
-  return `${head}/upload/w_${width},c_limit/${tail}`;
-};
-
 /* Individual Video & Poster Tile Component */
 const DriftTile = ({
   item,
@@ -85,7 +61,7 @@ const DriftTile = ({
   const [holdsDecoder, setHoldsDecoder] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
 
-  const posterSrc = useMemo(() => sizedPoster(item.image), [item.image]);
+  const posterSrc = useMemo(() => sizedAsset(item.image, 600), [item.image]);
 
   // Use ultra-fast Cloudinary web preview transform (480p, eco quality) for silky-smooth 60fps wall motion
   const previewSrc = useMemo(() => {
@@ -438,7 +414,7 @@ const DriftWall = ({
     const seen = new Set();
     const list = [];
     for (const item of items) {
-      const src = sizedPoster(item.image);
+      const src = sizedAsset(item.image, 600);
       if (src && !seen.has(src)) {
         seen.add(src);
         list.push(src);
