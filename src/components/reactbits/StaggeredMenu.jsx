@@ -76,10 +76,18 @@ export const StaggeredMenu = ({
       }
       preLayerElsRef.current = preLayers;
 
+      /*
+       * The panel and its prelayers stay permanently visible, parked off-screen. They used to flip from
+       * visibility:hidden to visible at the instant the open timeline started, which forced the compositor
+       * to rasterise four full-height layers - each with a 45px blurred box-shadow - inside the first frame
+       * of the slide. That first frame blew its budget every time and the menu appeared to stutter into
+       * place. Kept visible, the layers are already rasterised and the open is pure compositor transform.
+       * `inert` on the parked panel keeps it out of the tab order and away from the pointer.
+       */
       const offscreen = position === 'left' ? -100 : 100;
-      gsap.set([panel, ...preLayers], { xPercent: offscreen, visibility: 'hidden', force3D: true });
+      gsap.set([panel, ...preLayers], { xPercent: offscreen, visibility: 'visible', force3D: true });
       if (preContainer) {
-        gsap.set(preContainer, { xPercent: 0, visibility: 'hidden' });
+        gsap.set(preContainer, { xPercent: 0, visibility: 'visible' });
       }
       gsap.set(plusH, { transformOrigin: '50% 50%', y: -3.5, rotate: 0 });
       gsap.set(plusV, { transformOrigin: '50% 50%', y: 3.5, rotate: 0 });
@@ -91,7 +99,6 @@ export const StaggeredMenu = ({
 
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;
-    const preContainer = preLayersRef.current;
     const layers = preLayerElsRef.current;
     if (!panel) return null;
 
@@ -101,11 +108,6 @@ export const StaggeredMenu = ({
       closeTweenRef.current = null;
     }
     itemEntranceTweenRef.current?.kill();
-
-    if (preContainer) {
-      gsap.set(preContainer, { visibility: 'visible' });
-    }
-    gsap.set([panel, ...layers], { visibility: 'visible', force3D: true });
 
     const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'));
     const numberEls = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item'));
@@ -227,7 +229,6 @@ export const StaggeredMenu = ({
     itemEntranceTweenRef.current?.kill();
 
     const panel = panelRef.current;
-    const preContainer = preLayersRef.current;
     const layers = preLayerElsRef.current;
     if (!panel) return;
 
@@ -241,10 +242,6 @@ export const StaggeredMenu = ({
       force3D: true,
       overwrite: 'auto',
       onComplete: () => {
-        if (preContainer) {
-          gsap.set(preContainer, { visibility: 'hidden' });
-        }
-        gsap.set([panel, ...layers], { visibility: 'hidden' });
         const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'));
         if (itemEls.length) {
           gsap.set(itemEls, { yPercent: 100, rotate: 0 });
@@ -464,7 +461,7 @@ export const StaggeredMenu = ({
         </div>
       </header>
 
-      <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
+      <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open} inert={!open}>
         <div className="sm-panel-inner">
           <ul className="sm-panel-list" role="list" data-numbering={displayItemNumbering || undefined}>
             {items && items.length ? (

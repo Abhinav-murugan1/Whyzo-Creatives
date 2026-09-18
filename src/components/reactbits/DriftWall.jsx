@@ -53,7 +53,7 @@ const DriftTile = ({
   const tileRef = useRef(null);
   const videoRef = useRef(null);
   const pointerStartRef = useRef(null);
-  const lastTriggerRef = useRef(0);
+  const suppressClickRef = useRef(false);
   const releaseTimerRef = useRef(null);
 
   const [isNearViewport, setIsNearViewport] = useState(false);
@@ -181,24 +181,50 @@ const DriftTile = ({
     if (item.onClick) item.onClick(item, e);
   };
 
+  /*
+   * pointerup already opened this tile, so swallow the compatibility click that follows it. The old
+   * guard was a 400ms timestamp window, which also swallowed a genuine second tap - reopening a tile
+   * straight after closing its reel did nothing. A flag cleared on every fresh press cannot go stale:
+   * one press always allows exactly one open.
+   */
   const triggerOpen = (e) => {
-    const now = Date.now();
-    // Debounce to prevent duplicate fires between pointerup and fallback click
-    if (now - lastTriggerRef.current < 400) return;
-    lastTriggerRef.current = now;
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false;
+      return;
+    }
     handleClick(e);
   };
 
   const handlePointerDown = (e) => {
     if (e.button !== undefined && e.button !== 0) return;
+    suppressClickRef.current = false;
     pointerStartRef.current = {
       x: e.clientX,
       y: e.clientY,
       time: Date.now()
     };
+
+    /*
+     * The columns drift continuously, so between press and release the tile slides out from under a
+     * perfectly still cursor. pointerup then lands on the neighbouring tile and the browser retargets
+     * the click to their common ancestor, where nothing listens - the tap is simply lost. Capturing the
+     * pointer pins both pointerup and the compatibility click to the tile that was actually pressed.
+     * Touch is left alone so the capture cannot interfere with scrolling the page.
+     */
+    if (e.pointerType !== 'touch' && e.currentTarget.setPointerCapture) {
+      try {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } catch {
+        /* Pointer already gone - the plain click path still covers this tap */
+      }
+    }
   };
 
   const handlePointerUp = (e) => {
+    if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+
     if (!pointerStartRef.current) return;
     const start = pointerStartRef.current;
     pointerStartRef.current = null;
@@ -209,7 +235,8 @@ const DriftTile = ({
 
     // Movement under 18px and tap duration under 650ms registers immediately even if tile was drifting!
     if (dx < 18 && dy < 18 && dt < 650) {
-      triggerOpen(e);
+      suppressClickRef.current = true;
+      handleClick(e);
     }
   };
 

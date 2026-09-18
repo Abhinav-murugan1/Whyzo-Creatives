@@ -150,6 +150,22 @@ const ProjectModal = ({ project, onClose }) => {
     };
   }, [project, onClose, togglePlay, toggleMute]);
 
+  /*
+   * Silence the player the moment it unmounts. React drops the <video> out of the document but the
+   * element itself keeps its decoder and its audio output alive until the garbage collector gets to it,
+   * so closing the modal mid-playback left the soundtrack running over the page. Pausing and muting the
+   * detached element is the only thing that stops it deterministically. Muting as well as pausing covers
+   * the case where an in-flight play() promise resolves after the pause and restarts playback.
+   */
+  useEffect(() => {
+    const video = videoRef.current;
+    return () => {
+      if (!video) return;
+      video.muted = true;
+      video.pause();
+    };
+  }, []);
+
   // Start video playback with audio enabled (or fallback to muted if browser autoplay blocks audio)
   useEffect(() => {
     if (!project || !videoRef.current || !effectiveSrc) return;
@@ -314,7 +330,9 @@ const ProjectModal = ({ project, onClose }) => {
                   onClick={() => {
                     setVideoError(false);
                     setIsBuffering(true);
-                    setEffectiveSrc(project?.video);
+                    // Retry against the untransformed Cloudinary URL - setEffectiveSrc never existed,
+                    // so this button threw a ReferenceError instead of reloading anything.
+                    setFallbackToRaw(true);
                     if (videoRef.current) videoRef.current.load();
                   }}
                   className="px-4 py-2 bg-white text-black text-xs font-mono font-bold uppercase rounded-lg hover:bg-zinc-200 transition-colors cursor-pointer shadow-lg"
