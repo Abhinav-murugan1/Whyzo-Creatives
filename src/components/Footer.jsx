@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { ArrowUp, Video } from 'lucide-react';
 import ShinyText from './reactbits/ShinyText';
 
@@ -32,22 +31,19 @@ const TwitterIcon = (props) => (
   </svg>
 );
 
-function AnimatedContainer({ className, delay = 0.1, isRevealed = true, children }) {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
+/*
+ * Was a motion/react component. The library was pulling 41 kB gzipped into the initial bundle for
+ * this rise and one accordion in Services; the same motion is two CSS transitions (see .footer-rise
+ * in index.css), so the dependency is gone. `prefers-reduced-motion` is handled in the stylesheet.
+ */
+function AnimatedContainer({ className = '', delay = 0.1, isRevealed = true, children }) {
   return (
-    <motion.div
-      initial={{ translateY: 14, opacity: 0 }}
-      animate={isRevealed ? { translateY: 0, opacity: 1 } : { translateY: 14, opacity: 0 }}
-      transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={className}
+    <div
+      className={`footer-rise${isRevealed ? ' is-revealed' : ''} ${className}`.trim()}
+      style={{ '--rise-delay': `${delay * 1000}ms` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

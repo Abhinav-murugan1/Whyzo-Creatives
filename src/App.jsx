@@ -11,7 +11,13 @@ import { updatePageSEO } from './utils/seo';
 // Code-split secondary routes to reduce initial JS bundle size
 const Team = React.lazy(() => import('./components/Team'));
 const MemberPortfolio = React.lazy(() => import('./components/MemberPortfolio'));
-import ProjectModal from './components/ProjectModal';
+
+/*
+ * The reel lightbox only exists after a visitor clicks a piece of work, so it has no business in the
+ * initial bundle. It is prefetched on idle below, which means the chunk is already in cache by the
+ * time anyone clicks - the modal opens exactly as immediately as it did when statically imported.
+ */
+const ProjectModal = React.lazy(() => import('./components/ProjectModal'));
 import { getMemberById } from './data/teamMembers';
 
 /*
@@ -79,6 +85,20 @@ function App() {
     if (scrollToTop) window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  /* Warm the lightbox chunk once the browser is idle, so the first click never waits on the network */
+  useEffect(() => {
+    const warm = () => import('./components/ProjectModal');
+    const request = window.requestIdleCallback;
+
+    if (typeof request !== 'function') {
+      const timer = setTimeout(warm, 1500);
+      return () => clearTimeout(timer);
+    }
+
+    const handle = request(warm, { timeout: 3000 });
+    return () => window.cancelIdleCallback?.(handle);
+  }, []);
+
   useEffect(() => {
     const handlePopState = () => {
       const next = resolveRoute();
@@ -95,10 +115,10 @@ function App() {
   // Update dynamic SEO metadata whenever page or modal changes
   useEffect(() => {
     if (selectedProject) {
-      updatePageSEO('home', `${selectedProject.title} // Case Study // Whyzo Creations`);
+      updatePageSEO('home', `${selectedProject.title} // Case Study // Whyzo Creatives`);
     } else if (currentPage === 'member' && activeMember) {
       // A member page is shared on its own, so it carries its own title, description and canonical
-      updatePageSEO('member', `${activeMember.name} // ${activeMember.role} // Whyzo Creations`, {
+      updatePageSEO('member', `${activeMember.name} // ${activeMember.role} // Whyzo Creatives`, {
         description: activeMember.bio,
         path: `/team/${activeMember.id}`
       });
@@ -217,7 +237,7 @@ function App() {
                 LOST IN SPACE
               </h1>
               <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-sm mx-auto font-poppins">
-                The requested coordinate or project does not exist in the Whyzo Creations production matrix.
+                The requested coordinate or project does not exist in the Whyzo Creatives production matrix.
               </p>
               <div>
                 <button
@@ -242,14 +262,16 @@ function App() {
 
       {/* Project Detail Modal Lightbox */}
       {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onInquire={(projectName) => {
-            setSelectedProject(null);
-            handleSelectService(projectName);
-          }}
-        />
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onInquire={(projectName) => {
+              setSelectedProject(null);
+              handleSelectService(projectName);
+            }}
+          />
+        </Suspense>
       )}
 
       {/* Static Revealing Footer Container */}

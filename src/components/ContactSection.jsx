@@ -149,7 +149,7 @@ const ContactSection = ({ initialService }) => {
             </div>
             <h3 className="text-2xl font-bold uppercase tracking-tight">Inquiry Received</h3>
             <p className="text-zinc-300 max-w-md mx-auto text-sm leading-relaxed">
-              Thank you, <span className="text-white font-semibold">{formData.name}</span>. The Whyzo Creations production team has logged your inquiry for <span className="text-white font-semibold">{selectedServices.join(', ')}</span>. We will review your brief and reach out within 24 hours.
+              Thank you, <span className="text-white font-semibold">{formData.name}</span>. The Whyzo Creatives production team has logged your inquiry for <span className="text-white font-semibold">{selectedServices.join(', ')}</span>. We will review your brief and reach out within 24 hours.
             </p>
             <button
               onClick={() => {

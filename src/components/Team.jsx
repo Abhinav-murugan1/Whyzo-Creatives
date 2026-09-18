@@ -39,7 +39,7 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
                 <div className="relative aspect-[4/4.8] w-full rounded-xl overflow-hidden mb-6 bg-zinc-900">
                   <img
                     src={member.image}
-                    alt={`${member.name} - ${member.role} at Whyzo Creations`}
+                    alt={`${member.name} - ${member.role} at Whyzo Creatives`}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-105"

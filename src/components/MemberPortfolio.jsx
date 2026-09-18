@@ -178,7 +178,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
 
   const handleShare = useCallback(async () => {
     const url = window.location.href;
-    const title = `${member.name} // ${member.role} // Whyzo Creations`;
+    const title = `${member.name} // ${member.role} // Whyzo Creatives`;
 
     // Native sheet on mobile, clipboard everywhere else
     if (navigator.share) {

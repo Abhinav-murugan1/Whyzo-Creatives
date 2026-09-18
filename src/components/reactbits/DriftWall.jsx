@@ -218,7 +218,7 @@ const DriftTile = ({
       {/* Poster always paints first so a tile is never empty while its decoder spins up */}
       <img
         src={posterSrc}
-        alt={item.title ? `${item.title} - ${item.categoryLabel || 'Production'} | Whyzo Creations` : 'Whyzo Creations Portfolio Item'}
+        alt={item.title ? `${item.title} - ${item.categoryLabel || 'Production'} | Whyzo Creatives` : 'Whyzo Creatives Portfolio Item'}
         loading="lazy"
         decoding="async"
         fetchPriority="low"

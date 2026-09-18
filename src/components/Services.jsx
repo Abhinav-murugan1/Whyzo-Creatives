@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import ShinyText from './reactbits/ShinyText';
 import Reveal from './Reveal';
 import { 
@@ -332,16 +331,14 @@ const Services = ({ onSelectService }) => {
                   }`} />
                 </button>
 
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                      className="overflow-hidden border-t border-white/10 bg-black/50"
-                    >
-                      <div className="p-4 sm:p-6 space-y-4">
+                {/*
+                  Was AnimatePresence animating height 0 <-> auto. The .collapsible grid-rows
+                  technique reaches intrinsic height with the same 0.35s curve and no JS, which
+                  is what let motion/react leave the bundle entirely.
+                */}
+                <div className={`collapsible${isActive ? ' is-open' : ''}`}>
+                  <div className="border-t border-white/10 bg-black/50">
+                    <div className="p-4 sm:p-6 space-y-4">
                         {/* Header metadata and close button */}
                         <div className="flex justify-between items-center pb-2 border-b border-white/5">
                           <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
@@ -426,10 +423,9 @@ const Services = ({ onSelectService }) => {
                           </button>
                         </div>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                    </div>
+                  </div>
+                </div>
             );
           })}
         </div>

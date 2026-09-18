@@ -14,6 +14,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  /* Development diagnostics have no business shipping to visitors */
+  esbuild: {
+    drop: ['console', 'debugger']
+  },
   build: {
     sourcemap: false,
     chunkSizeWarningLimit: 900,
