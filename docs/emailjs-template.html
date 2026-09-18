@@ -1,0 +1,48 @@
+<!--
+  Paste this into EmailJS > Email Templates > template_k3u9l8j > Content (switch the editor to
+  "Code"/HTML mode first).
+
+  Template settings to set alongside it:
+    Subject   : New inquiry from {{name}} // Whyzo Creations
+    To email  : your receiving inbox
+    From name : Whyzo Creations Website
+    Reply To  : {{reply_to}}        <- the enquirer's address, so Reply goes straight back to them
+
+  Variables the site sends: name, time, message, email, reply_to, company, services, category, budget.
+  Only name, time and message are used below; the rest are available if you extend the template.
+-->
+<div style="margin:0;padding:24px;background:#0a0a0c;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px;margin:0 auto;background:#111114;border:1px solid rgba(255,255,255,0.12);border-radius:16px;">
+    <tr>
+      <td style="padding:28px 28px 20px 28px;">
+        <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#ffffff;">
+          A message by <strong>{{name}}</strong> has been received. Kindly respond at your earliest convenience.
+        </p>
+
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#0a0a0c;border:1px solid rgba(255,255,255,0.10);border-radius:12px;">
+          <tr>
+            <td style="padding:20px;">
+              <div style="font-size:22px;line-height:1;margin-bottom:10px;">&#128100;</div>
+
+              <div style="font-size:16px;font-weight:700;color:#ffffff;letter-spacing:0.01em;">
+                {{name}}
+              </div>
+
+              <div style="margin-top:4px;font-family:'Courier New',Courier,monospace;font-size:12px;color:#8b8b93;">
+                {{time}}
+              </div>
+
+              <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.10);font-size:14px;line-height:1.65;color:#d4d4d8;white-space:pre-line;">
+                {{message}}
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:20px 0 0 0;font-family:'Courier New',Courier,monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#6b6b73;">
+          Whyzo Creations // Website Inquiry
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

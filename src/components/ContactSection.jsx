@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import ShinyText from './reactbits/ShinyText';
 import Reveal from './Reveal';
-import { Send, CheckCircle } from 'lucide-react';
+import { AlertTriangle, Loader2, Send, CheckCircle } from 'lucide-react';
+
+/*
+ * EmailJS delivers the inquiry straight from the browser - no backend. The public key is public by
+ * design (it only authorises sends against this account's allowlisted domains), so it ships in the
+ * bundle like the service and template ids. Lock the account down under EmailJS > Account > Security
+ * by allowlisting the live domain, otherwise anyone can post through the form.
+ */
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_gjk9ayn';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_k3u9l8j';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'Ce0wbof9anolL03p3';
 
 const allServices = [
   'Videography',
@@ -41,6 +52,8 @@ const ContactSection = ({ initialService }) => {
     brief: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState(null);
 
   if (initialService && initialService !== prevInitial) {
     setPrevInitial(initialService);
@@ -60,10 +73,57 @@ const ContactSection = ({ initialService }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
-    setSubmitted(true);
+    if (!formData.name || !formData.email || isSending) return;
+
+    if (!EMAILJS_PUBLIC_KEY) {
+      setSendError('Email is not configured yet. Set VITE_EMAILJS_PUBLIC_KEY and redeploy.');
+      return;
+    }
+
+    setIsSending(true);
+    setSendError(null);
+
+    // The template renders {{name}}, {{time}} and {{message}}; everything else is folded into message
+    const message = [
+      `Email: ${formData.email}`,
+      formData.company ? `Company: ${formData.company}` : null,
+      `Services: ${selectedServices.join(', ')}`,
+      `Category: ${selectedCategory}`,
+      `Budget: ${selectedBudget}`,
+      '',
+      'Brief:',
+      formData.brief || '(no brief provided)'
+    ]
+      .filter(line => line !== null)
+      .join('\n');
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          time: new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' }),
+          message,
+          // Spare fields so the template can be extended without touching this code
+          email: formData.email,
+          reply_to: formData.email,
+          company: formData.company,
+          services: selectedServices.join(', '),
+          category: selectedCategory,
+          budget: selectedBudget
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setSubmitted(true);
+    } catch (error) {
+      // Never show the success panel on a failed send - the lead would be lost silently
+      setSendError(error?.text || 'Transmission failed. Please try again, or email us directly.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -249,11 +309,22 @@ const ContactSection = ({ initialService }) => {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                disabled={isSending}
+                className="w-full py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <span>Transmit Inquiry</span>
-                <Send className="w-4 h-4" />
+                <span>{isSending ? 'Transmitting...' : 'Transmit Inquiry'}</span>
+                {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               </button>
+
+              {sendError && (
+                <div
+                  role="alert"
+                  className="mt-3 flex items-start gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-200"
+                >
+                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span>{sendError}</span>
+                </div>
+              )}
             </div>
           </form>
         )}
