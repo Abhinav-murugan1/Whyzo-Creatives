@@ -1,12 +1,12 @@
-# Whyzo Creations - Comprehensive LLM Knowledge Base
+# Whyzo Creatives - Comprehensive LLM Knowledge Base
 
-## Studio Identity
-- **Legal Entity**: Whyzo Creations
-- **Studio Name**: Whyzo Creatives
-- **Tagline**: Minimalist Creative Media & Web Studio
+## Company Identity
+- **Legal Entity**: Whyzo Creatives
+- **Company Name**: Whyzo Creatives
+- **Tagline**: Minimalist Creative Media & Web Company
 - **Domain**: https://whyzocreatives.com
 - **Locations**:
-  - New York: SoHo Studio
+  - New York: SoHo Company
   - London: Shoreditch Hub
   - Dubai: Design District
   - Tokyo: Shibuya Lab
@@ -24,9 +24,9 @@
    - Deliverables: Commercial Brand Spots (16:9 & 9:16), Feature Brand Documentaries, 4K Drone Aerials, Multi-Cam Live Event Capture.
 2. **Photography (Editorial // Medium Format)**
    - Equipment: Phase One 100MP System, Profoto Pro-11 Strobe Kit, Hasselblad HC Glass, Tethered 4K Review Station.
-   - Deliverables: High-Fashion Lookbooks, F&B Culinary Art Stills, Automotive Studio & Track Stills, Executive & Artist Headshots.
+   - Deliverables: High-Fashion Lookbooks, F&B Culinary Art Stills, Automotive Company & Track Stills, Executive & Artist Headshots.
 3. **Video Editing (Post // DaVinci Resolve)**
-   - Software: DaVinci Resolve Studio, Dolby Atmos Audio Suite, After Effects VFX Node, Custom Film Grain LUTs.
+   - Software: DaVinci Resolve Company, Dolby Atmos Audio Suite, After Effects VFX Node, Custom Film Grain LUTs.
    - Deliverables: DaVinci LUT Color Grade, Spatial Sound Design & Mastering, Social Vertical Cutdowns (9:16), Motion Graphics & Title Cards.
 4. **Graphic Design (Identity // Typography)**
    - Tools: Adobe Illustrator Suite, Custom Font Architecture, Vector CAD Engines, Figma Design Tokens.

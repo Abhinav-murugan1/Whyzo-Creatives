@@ -112,7 +112,7 @@ const teamMembers = [
     tag: 'GROWTH // CLIENT PARTNERSHIPS',
     stat: '40+ Accounts',
     image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789761416/team/member_03.jpg',
-    bio: 'Connecting brands with the studio floor - scoping campaigns, shaping production budgets, and turning first conversations into long-running client partnerships across the region.',
+    bio: 'Connecting brands with the production floor - scoping campaigns, shaping production budgets, and turning first conversations into long-running client partnerships across the region.',
     specialties: [
       'Client Acquisition & Retention',
       'Campaign Scoping & Budgeting',

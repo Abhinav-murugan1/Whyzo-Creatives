@@ -159,7 +159,7 @@ const Hero = () => {
         {/* Subtitle / Positioning - Balanced editorial spacing */}
         <div className="reveal-hero mt-6 sm:mt-10 md:mt-14 max-w-4xl" style={{ '--reveal-delay': '420ms' }}>
           <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-normal leading-relaxed tracking-normal font-poppins poppins-regular">
-            An elite creative production studio defining visual culture through <span className="text-white font-semibold poppins-semibold underline underline-offset-4 decoration-white/30">Videography,</span>
+            An elite creative production company defining visual culture through <span className="text-white font-semibold poppins-semibold underline underline-offset-4 decoration-white/30">Videography,</span>
             <br />
             <span className="text-white font-semibold poppins-semibold underline underline-offset-4 decoration-white/30">AI Video, Photography, & Web Development</span> for leading brands.
           </p>

@@ -7,23 +7,23 @@ const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://whyzocreatives.com';
 
 const PAGE_META = {
   home: {
-    title: 'Whyzo Creations // Minimalist Creative Media & Web Studio',
-    description: 'Whyzo Creations is an elite creative production studio defining visual culture through 8K commercial videography, AI video synthesis, editorial photography, brand identity, and WebGL web development.',
+    title: 'Whyzo Creatives // Creative Production Company',
+    description: 'Whyzo Creatives is a creative production company for brands, people and ideas that deserve more than basic content. Commercials, social content, campaigns, events and photography.',
     path: '/'
   },
   team: {
-    title: 'Our Team & Leadership Collective // Whyzo Creations',
-    description: 'Meet the multidisciplinary vanguard behind Whyzo Creations—uniting world-class 8K cinematography, generative neural VFX, and spatial web systems.',
+    title: 'Our Team // Whyzo Creatives',
+    description: 'The people behind Whyzo Creatives - direction, design, production and development for brands, people and ideas.',
     path: '/team'
   },
   member: {
-    title: 'Team Member Portfolio // Whyzo Creations',
-    description: 'Selected work and production credits from the Whyzo Creations roster.',
+    title: 'Team Member // Whyzo Creatives',
+    description: 'Selected work and production credits from the Whyzo Creatives team.',
     path: '/team'
   },
   notFound: {
-    title: '404 - Page Not Found // Whyzo Creations',
-    description: 'The requested page could not be located. Return to Whyzo Creations portfolio.',
+    title: '404 - Page Not Found // Whyzo Creatives',
+    description: 'The requested page could not be located. Return to the Whyzo Creatives portfolio.',
     path: '/404',
     noindex: true
   }

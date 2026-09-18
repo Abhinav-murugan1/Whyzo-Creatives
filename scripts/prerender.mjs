@@ -98,14 +98,14 @@ const render = ({ path, title, description, image }) => {
 const routes = [
   {
     path: '/team',
-    title: 'Our Team & Leadership Collective // Whyzo Creations',
+    title: 'Our Team // Whyzo Creatives',
     description:
-      'Meet the multidisciplinary vanguard behind Whyzo Creations - uniting world-class 8K cinematography, generative neural VFX, and spatial web systems.',
+      'The people behind Whyzo Creatives - direction, design, production and development for brands, people and ideas.',
     image: `${SITE_URL}/og-image.png`
   },
   ...members.map(member => ({
     path: `/team/${member.id}`,
-    title: `${member.name} // ${member.role} // Whyzo Creations`,
+    title: `${member.name} // ${member.role} // Whyzo Creatives`,
     description: member.bio,
     image: socialImage(member.image)
   }))

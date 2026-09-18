@@ -1,79 +1,102 @@
+<!--
+  Social card, built to read as a screenshot of the hero: black stage, faint 40px grid, soft vertical
+  light beams, the split-weight WHYZO CREATIVES wordmark, the hero's own line of copy, the two CTA
+  pills and the metrics panel. Rasterised to og-image.png by scripts (sharp) - regenerate that PNG
+  after editing this file, since no platform renders an SVG social card.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#18181b" stop-opacity="0.8" />
+    <radialGradient id="stageGlow" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#1c1c20" stop-opacity="0.9" />
       <stop offset="100%" stop-color="#000000" stop-opacity="1" />
     </radialGradient>
-    <radialGradient id="centerOrb" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-    </radialGradient>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#a1a1aa" />
+
+    <!-- Vertical light beams, matching the WebGL backdrop on the live hero -->
+    <linearGradient id="beam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
     </linearGradient>
+    <linearGradient id="beamSoft" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="wordmark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#d4d4d8" />
+      <stop offset="100%" stop-color="#8b8b93" />
+    </linearGradient>
+
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272a" stroke-width="0.75" stroke-opacity="0.5" />
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.05" />
     </pattern>
+
+    <linearGradient id="vignette" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.55" />
+      <stop offset="45%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.85" />
+    </linearGradient>
   </defs>
 
-  <!-- Background Base -->
+  <!-- Stage -->
   <rect width="1200" height="630" fill="#000000" />
-  <rect width="1200" height="630" fill="url(#bgGlow)" />
+  <rect width="1200" height="630" fill="url(#stageGlow)" />
+
+  <!-- Beams -->
+  <g>
+    <rect x="95" y="-40" width="86" height="710" fill="url(#beamSoft)" transform="rotate(4 138 315)" />
+    <rect x="250" y="-40" width="54" height="710" fill="url(#beam)" transform="rotate(4 277 315)" />
+    <rect x="430" y="-40" width="120" height="710" fill="url(#beamSoft)" transform="rotate(4 490 315)" />
+    <rect x="640" y="-40" width="62" height="710" fill="url(#beam)" transform="rotate(4 671 315)" />
+    <rect x="800" y="-40" width="150" height="710" fill="url(#beamSoft)" transform="rotate(4 875 315)" />
+    <rect x="1010" y="-40" width="70" height="710" fill="url(#beam)" transform="rotate(4 1045 315)" />
+  </g>
+
   <rect width="1200" height="630" fill="url(#grid)" />
-  <circle cx="600" cy="315" r="450" fill="url(#centerOrb)" />
+  <rect width="1200" height="630" fill="url(#vignette)" />
 
-  <!-- Outer Frame Lines -->
-  <rect x="40" y="40" width="1120" height="550" rx="16" fill="none" stroke="#3f3f46" stroke-width="1.5" stroke-opacity="0.4" />
+  <!-- Wordmark: WHYZO bold, CREATIVES light, exactly as the hero sets it -->
+  <g transform="translate(80, 300)">
+    <text font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="92" letter-spacing="-2" fill="url(#wordmark)">
+      <tspan font-weight="700">WHYZO</tspan><tspan font-weight="300" dx="26">CREATIVES</tspan>
+    </text>
+  </g>
 
-  <!-- Top Metadata Header -->
-  <text x="80" y="95" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="4" fill="#71717a" text-transform="uppercase">
-    WHYZO CREATIONS // PRODUCTION STUDIO
+  <!-- Hero copy -->
+  <g transform="translate(82, 356)" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="21" font-weight="300" fill="#d4d4d8">
+    <text x="0" y="0">An elite creative production company defining visual</text>
+    <text x="0" y="33">culture through Videography, AI Video, Photography</text>
+    <text x="0" y="66">&amp; Web Development for leading brands.</text>
+  </g>
+
+  <!-- CTA pills -->
+  <g transform="translate(80, 478)" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="1.6">
+    <rect x="0" y="0" width="212" height="46" rx="23" fill="#ffffff" />
+    <text x="106" y="29" text-anchor="middle" fill="#000000">EXPLORE OUR WORK</text>
+
+    <rect x="228" y="0" width="196" height="46" rx="23" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5" />
+    <text x="326" y="29" text-anchor="middle" fill="#ffffff">START A PROJECT</text>
+  </g>
+
+  <!-- Metrics panel, mirroring the hero's bottom-right card -->
+  <g transform="translate(792, 452)">
+    <rect x="0" y="0" width="328" height="104" rx="18" fill="#0a0a0c" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5" />
+    <line x1="176" y1="22" x2="176" y2="82" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5" />
+
+    <text x="30" y="56" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="32" font-weight="700" fill="#ffffff">800+</text>
+    <text x="30" y="79" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="9.5" font-weight="500" letter-spacing="1.3" fill="#8b8b93">GLOBAL PROJECTS</text>
+
+    <text x="206" y="56" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="32" font-weight="700" fill="#ffffff">4.9/5</text>
+    <text x="206" y="79" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="9.5" font-weight="500" letter-spacing="1.3" fill="#8b8b93">CLIENT RATING</text>
+  </g>
+
+  <!-- Top rail -->
+  <text x="80" y="74" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="12" font-weight="600" letter-spacing="3.5" fill="#71717a">
+    CREATIVE PRODUCTION COMPANY
   </text>
-  <text x="1120" y="95" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#71717a" text-anchor="end">
-    GLOBAL REEL 2026
+  <text x="1120" y="74" font-family="'Poppins', 'Segoe UI', -apple-system, sans-serif" font-size="12" font-weight="600" letter-spacing="3" fill="#71717a" text-anchor="end">
+    WHYZOCREATIVES.COM
   </text>
-
-  <!-- Central Title -->
-  <g transform="translate(80, 290)">
-    <text x="0" y="0" font-family="'Poppins', -apple-system, sans-serif" font-size="76" font-weight="800" letter-spacing="-1.5" fill="url(#textGrad)">
-      WHYZO CREATIVES
-    </text>
-    <text x="0" y="60" font-family="'Poppins', -apple-system, sans-serif" font-size="24" font-weight="400" fill="#a1a1aa">
-      Minimalist Creative Media &amp; Spatial Web Studio
-    </text>
-  </g>
-
-  <!-- Disciplines / Tags -->
-  <g transform="translate(80, 435)" font-family="monospace" font-size="13" letter-spacing="1.5" fill="#e4e4e7">
-    <!-- Tag 1 -->
-    <rect x="0" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
-    <text x="90" y="22" text-anchor="middle">8K VIDEOGRAPHY</text>
-
-    <!-- Tag 2 -->
-    <rect x="195" y="0" width="170" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
-    <text x="280" y="22" text-anchor="middle">AI VIDEO VFX</text>
-
-    <!-- Tag 3 -->
-    <rect x="380" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
-    <text x="470" y="22" text-anchor="middle">100MP ST करू STILLS</text>
-
-    <!-- Tag 4 -->
-    <rect x="575" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
-    <text x="665" y="22" text-anchor="middle">POST EDITING</text>
-
-    <!-- Tag 5 -->
-    <rect x="770" y="0" width="220" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
-    <text x="880" y="22" text-anchor="middle">THREE.JS WEBGL DEV</text>
-  </g>
-
-  <!-- Bottom Brand Signature -->
-  <g transform="translate(80, 535)">
-    <text x="0" y="0" font-family="monospace" font-size="12" letter-spacing="2" fill="#71717a">
-      HUBS: NEW YORK // LONDON // DUBAI // TOKYO
-    </text>
-    <text x="1040" y="0" font-family="monospace" font-size="12" letter-spacing="2" fill="#ffffff" text-anchor="end">
-      WHYZOCREATIONS.COM
-    </text>
-  </g>
 </svg>
