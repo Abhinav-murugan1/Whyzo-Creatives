@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://whyzocreations.com/sitemap.xml
+
+# LLM Crawler Context
+# See /llms.txt and /llms-full.txt for comprehensive AI ingestion

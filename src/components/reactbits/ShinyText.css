@@ -1,0 +1,12 @@
+.shiny-text {
+  display: inline-block;
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: background-position;
+}
+
+.shiny-text-pause-hover:hover {
+  animation-play-state: paused !important;
+}

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#18181b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="1" />
+    </radialGradient>
+    <radialGradient id="centerOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#27272a" stroke-width="0.75" stroke-opacity="0.5" />
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="#000000" />
+  <rect width="1200" height="630" fill="url(#bgGlow)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <circle cx="600" cy="315" r="450" fill="url(#centerOrb)" />
+
+  <!-- Outer Frame Lines -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="none" stroke="#3f3f46" stroke-width="1.5" stroke-opacity="0.4" />
+
+  <!-- Top Metadata Header -->
+  <text x="80" y="95" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="4" fill="#71717a" text-transform="uppercase">
+    WHYZO CREATIONS // PRODUCTION STUDIO
+  </text>
+  <text x="1120" y="95" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#71717a" text-anchor="end">
+    GLOBAL REEL 2026
+  </text>
+
+  <!-- Central Title -->
+  <g transform="translate(80, 290)">
+    <text x="0" y="0" font-family="'Poppins', -apple-system, sans-serif" font-size="76" font-weight="800" letter-spacing="-1.5" fill="url(#textGrad)">
+      WHYZO CREATIVES
+    </text>
+    <text x="0" y="60" font-family="'Poppins', -apple-system, sans-serif" font-size="24" font-weight="400" fill="#a1a1aa">
+      Minimalist Creative Media &amp; Spatial Web Studio
+    </text>
+  </g>
+
+  <!-- Disciplines / Tags -->
+  <g transform="translate(80, 435)" font-family="monospace" font-size="13" letter-spacing="1.5" fill="#e4e4e7">
+    <!-- Tag 1 -->
+    <rect x="0" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="90" y="22" text-anchor="middle">8K VIDEOGRAPHY</text>
+
+    <!-- Tag 2 -->
+    <rect x="195" y="0" width="170" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="280" y="22" text-anchor="middle">AI VIDEO VFX</text>
+
+    <!-- Tag 3 -->
+    <rect x="380" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="470" y="22" text-anchor="middle">100MP ST करू STILLS</text>
+
+    <!-- Tag 4 -->
+    <rect x="575" y="0" width="180" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="665" y="22" text-anchor="middle">POST EDITING</text>
+
+    <!-- Tag 5 -->
+    <rect x="770" y="0" width="220" height="34" rx="17" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+    <text x="880" y="22" text-anchor="middle">THREE.JS WEBGL DEV</text>
+  </g>
+
+  <!-- Bottom Brand Signature -->
+  <g transform="translate(80, 535)">
+    <text x="0" y="0" font-family="monospace" font-size="12" letter-spacing="2" fill="#71717a">
+      HUBS: NEW YORK // LONDON // DUBAI // TOKYO
+    </text>
+    <text x="1040" y="0" font-family="monospace" font-size="12" letter-spacing="2" fill="#ffffff" text-anchor="end">
+      WHYZOCREATIONS.COM
+    </text>
+  </g>
+</svg>

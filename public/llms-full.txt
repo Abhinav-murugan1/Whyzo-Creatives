@@ -1,0 +1,45 @@
+# Whyzo Creations - Comprehensive LLM Knowledge Base
+
+## Studio Identity
+- **Legal Entity**: Whyzo Creations
+- **Studio Name**: Whyzo Creatives
+- **Tagline**: Minimalist Creative Media & Web Studio
+- **Domain**: https://whyzocreations.com
+- **Locations**:
+  - New York: SoHo Studio
+  - London: Shoreditch Hub
+  - Dubai: Design District
+  - Tokyo: Shibuya Lab
+- **Hours**: Monday - Friday, 09:00 - 19:00 (Client productions deploy 24/7 globally)
+
+## Core Leadership & Creative Vanguard
+- **Fayaz** (Founder // Creative Director): Filmmaking & Creative Direction with 8 years of experience turning ideas into visual stories across commercial content, real estate, automotive, events, food, and social media. Specializing in Cinematography & Visual Direction, Commercial & Brand Content, and Sharp Storytelling.
+- **Abdul Rahman** (Visual Storyteller // Senior Graphic Designer): Visual Storytelling & Graphic Design with 8 years of experience transforming ideas into engaging visual experiences across branding, advertising, social media, sports & esports, packaging, and digital content.
+- **Marcus Thorne** (Principal WebGL Architect): Spatial UI & 3D Web Engineering. Three.js shaders, 60fps WebGL particle fields, Lighthouse 99+ speed optimization. Awwwards Site of the Day recipient.
+- **Abhinav Murugan** (Full Stack Developer // UI/UX Designer): Full Stack Engineering & UI/UX Architecture. Modern web applications, React & React Native ecosystems, REST API architectures, and intuitive digital interfaces.
+
+## Service Catalog
+1. **Videography (RED Cinema // 8K RAW)**
+   - Equipment: RED V-Raptor 8K VV, Cooke Anamorphic Glass, DJI Ronin 4D Rig, Heavy-Lift Cinema Drones.
+   - Deliverables: Commercial Brand Spots (16:9 & 9:16), Feature Brand Documentaries, 4K Drone Aerials, Multi-Cam Live Event Capture.
+2. **Photography (Editorial // Medium Format)**
+   - Equipment: Phase One 100MP System, Profoto Pro-11 Strobe Kit, Hasselblad HC Glass, Tethered 4K Review Station.
+   - Deliverables: High-Fashion Lookbooks, F&B Culinary Art Stills, Automotive Studio & Track Stills, Executive & Artist Headshots.
+3. **Video Editing (Post // DaVinci Resolve)**
+   - Software: DaVinci Resolve Studio, Dolby Atmos Audio Suite, After Effects VFX Node, Custom Film Grain LUTs.
+   - Deliverables: DaVinci LUT Color Grade, Spatial Sound Design & Mastering, Social Vertical Cutdowns (9:16), Motion Graphics & Title Cards.
+4. **Graphic Design (Identity // Typography)**
+   - Tools: Adobe Illustrator Suite, Custom Font Architecture, Vector CAD Engines, Figma Design Tokens.
+   - Deliverables: Comprehensive Brand Guidelines, Typography Architecture & Systems, Luxury Packaging & Merch Design, Multi-Platform Campaign Suites.
+5. **Web Design (UI/UX // Spatial Interaction)**
+   - Tools: Figma Master UI Kits, Framer Micro-Prototypes, Spatial Responsive Grids, Design Tokens Engine.
+   - Deliverables: Production Figma UI Kits, Clickable Interactive Prototypes, Responsive Mobile/Desktop Layouts, Design System Documentation.
+6. **AI Video Creation (Gen-AI // Neural Video)**
+   - Models: Runway Gen-3 Alpha, OpenAI Sora Pipeline, Midjourney v6 Custom LoRAs, Topaz Video AI Upscaling.
+   - Deliverables: Generative Neural Commercial Video, Prompt-Engineered Surreal VFX, AI Voice-Over & Digital Avatars, Synthetic 3D Environments.
+7. **Web Development & Designing (Full-Stack // WebGL 3D)**
+   - Stack: React 19 & Vite Engine, Three.js & GLSL Shaders, Tailwind CSS v4, Headless CMS & Edge CDN.
+   - Deliverables: Custom React / Vite Web Platforms, Headless E-Commerce flagships, Three.js 3D Web Experiences, Lighthouse 99+ Speed Optimization.
+
+## Inquiry Process
+Prospective clients can define project service requirements, industry category (F&B, Automotive, Events, Social Media Contents, Personal Branding, Influencer Marketing), budget ranges (<$5,000, $5,000-$15,000, $15,000-$50,000, $50,000+), and project briefs directly via the interactive inquiry portal at https://whyzocreations.com/#contact.

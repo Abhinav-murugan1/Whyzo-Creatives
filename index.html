@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Restores the path that public/404.html parked in the query string, before React boots -->
+    <script>
+      (function (l) {
+        if (l.search[1] !== '/') return;
+        var decoded = l.search.slice(1).split('&').map(function (part) {
+          return part.replace(/~and~/g, '&');
+        }).join('?');
+        window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+      })(window.location);
+    </script>
+    <title>Whyzo Creations // Minimalist Creative Media &amp; Web Studio</title>
+    <meta name="description" content="Whyzo Creations is an elite creative production studio defining visual culture through 8K commercial videography, AI video synthesis, editorial photography, brand identity, and WebGL web development." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://whyzocreations.com/" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- iOS ignores an SVG apple-touch-icon, so the home-screen icon needs a raster -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://whyzocreations.com/" />
+    <meta property="og:site_name" content="Whyzo Creations" />
+    <meta property="og:title" content="Whyzo Creations // Minimalist Creative Media &amp; Web Studio" />
+    <meta property="og:description" content="Elite creative production studio defining visual culture through 8K commercial videography, AI video synthesis, editorial photography, brand identity, and WebGL web development." />
+    <meta property="og:image" content="https://whyzocreations.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Whyzo Creations Studio Production Reel" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@whyzocreations" />
+    <meta name="twitter:creator" content="@whyzocreations" />
+    <meta name="twitter:title" content="Whyzo Creations // Minimalist Creative Media &amp; Web Studio" />
+    <meta name="twitter:description" content="Elite creative production studio defining visual culture through 8K commercial videography, AI video synthesis, editorial photography, and WebGL web development." />
+    <meta name="twitter:image" content="https://whyzocreations.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Whyzo Creations Studio Production Reel" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Media CDN Preconnect - every gallery poster/reel and section image is served from these -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <!-- Poppins only: Orbitron, Sarpanch, Space Grotesk and Zen Dots were requested but never rendered (index.css maps every one of their classes back to Poppins), and no italic is used anywhere -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://whyzocreations.com/#website",
+          "url": "https://whyzocreations.com/",
+          "name": "Whyzo Creations",
+          "alternateName": "Whyzo Creatives",
+          "description": "Minimalist Creative Media & Web Studio",
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://whyzocreations.com/#organization",
+          "name": "Whyzo Creations",
+          "alternateName": "Whyzo Creatives",
+          "url": "https://whyzocreations.com/",
+          "logo": "https://whyzocreations.com/favicon.svg",
+          "image": "https://whyzocreations.com/og-image.png",
+          "description": "Elite creative production team specializing in Videography, Photography, Video Editing, Graphic Design, Web Design, AI Video Creation, and Web Development.",
+          "priceRange": "$$$$",
+          "currenciesAccepted": "USD, EUR, GBP, AED",
+          "paymentAccepted": "Credit Card, Wire Transfer, Crypto",
+          "areaServed": "Worldwide",
+          "sameAs": [
+            "https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0",
+            "https://www.youtube.com/@Whyzocreatives",
+            "https://www.linkedin.com/in/whyzo-creatives-9b3212438/",
+            "https://vimeo.com",
+            "https://x.com"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+          },
+          "location": [
+            {
+              "@type": "Place",
+              "name": "Whyzo Creations NYC (SoHo Studio)",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New York",
+                "addressRegion": "NY",
+                "addressCountry": "US"
+              }
+            },
+            {
+              "@type": "Place",
+              "name": "Whyzo Creations London (Shoreditch Hub)",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "London",
+                "addressCountry": "GB"
+              }
+            },
+            {
+              "@type": "Place",
+              "name": "Whyzo Creations Dubai (Design District)",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Dubai",
+                "addressCountry": "AE"
+              }
+            },
+            {
+              "@type": "Place",
+              "name": "Whyzo Creations Tokyo (Shibuya Lab)",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Tokyo",
+                "addressCountry": "JP"
+              }
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Creative & Web Disciplines",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Videography",
+                  "description": "RED Cinema & Sony FX Series 8K RAW commercial films, brand documentaries, and anamorphic multi-cam production."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Photography",
+                  "description": "100MP medium-format editorial lookbooks, F&B culinary art, automotive track, and executive studio portraiture."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Video Editing",
+                  "description": "Hollywood-grade post-production, DaVinci Resolve 16-bit color science, sound design, and narrative pacing."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Graphic Designing",
+                  "description": "Minimalist brand identities, international typography systems, editorial layouts, and vector assets."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Designing",
+                  "description": "Spatial UI/UX design systems, interactive Figma prototypes, and conversion-focused dark layouts."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "AI Video Creation",
+                  "description": "Generative video synthesis, neural rendering, AI digital avatars, and surreal cinematic VFX."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Development",
+                  "description": "Full-stack custom web engineering using React, Vite, Three.js shaders, and headless architectures."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://whyzocreations.com/#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://whyzocreations.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Gallery",
+              "item": "https://whyzocreations.com/#gallery"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Services",
+              "item": "https://whyzocreations.com/#services"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Team",
+              "item": "https://whyzocreations.com/team"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Inquire",
+              "item": "https://whyzocreations.com/#contact"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-black text-white antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

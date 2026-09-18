@@ -1,0 +1,36 @@
+# Whyzo Creations
+
+> Minimalist Creative Media & Web Studio operating at the intersection of 8K cinema, digital media, AI synthesis, and high-craft web design.
+
+## Overview
+- **Name**: Whyzo Creations (Whyzo Creatives)
+- **Website**: https://whyzocreations.com
+- **Disciplines**: Commercial Videography, Editorial Photography, High-End Video Editing, Minimalist Graphic Design, Spatial Web Design, Generative AI Video Creation, Full-Stack WebGL Development.
+- **Global Hubs**: New York (SoHo Studio), London (Shoreditch Hub), Dubai (Design District), Tokyo (Shibuya Lab).
+
+## Key Services
+- **Videography**: RED Cinema & Sony FX Series 8K RAW commercial films, brand documentaries, anamorphic multi-camera productions.
+- **Photography**: 100MP medium-format editorial lookbooks, F&B culinary art, automotive track, and executive studio portraiture.
+- **Video Editing**: Hollywood-grade post-production, DaVinci Resolve 16-bit color science, spatial sound design, and narrative pacing.
+- **Graphic Design**: Minimalist brand identities, Swiss grid systems, international typography architecture, vector precision.
+- **Web Design**: Spatial UI/UX design systems, Figma master kits, dark aesthetic micro-interactions, conversion-focused design.
+- **AI Video Creation**: Next-generation generative neural video synthesis (Sora, Runway Gen-3, Kling), digital avatars, fluid particle VFX.
+- **Web Development**: Lightning-fast custom web applications engineered with React 19, Vite, Three.js custom GLSL shaders, Tailwind CSS, and Lighthouse 99+ ratings.
+
+## Portfolio Highlights
+- **AURA Mixology & Culinary Cinema**: Ultra-dark aesthetic culinary film and photographic series (+3.4M impressions).
+- **Veloce Hypercar Synthetic Reveal**: Combined synthetic neural AI rendering with real-world track videography (1.2M organic views).
+- **Monochrome Haute Couture Runway**: High-contrast studio portraiture for Paris Fashion Week runway collateral.
+- **Nocturne Global Music Festival**: 12-camera live video editing and LED visuals for 45,000 attendees.
+- **Neural Synthesis Cybernetic Sequence**: GenAI Film Festival Best Visual Effects winner.
+- **Kuro Tokyo Minimalist Identity & Stills**: Packaging, slow-motion brewing videography, and e-commerce platform.
+- **Apex Racing Track Day Pursuit**: 120mph FPV drone tracking shots on Nürburgring.
+- **Spatial Three.js Digital Flagship**: Luxury dark spatial platform with interactive 3D particle shaders.
+- **Solis Brutalist Architectural Film**: Monograph print & natural light architectural study in Zurich.
+- **Kinetix Cybernetic Apparel Lookbook**: AI virtual styling with digital garment physics.
+- **Zenith Horology Macro Cinematography**: Extreme macro probe lens cinematography capturing tourbillon escapements.
+- **Obsidian Dark Design System & Web**: High-security institutional fintech platform ($2.8B AUM).
+
+## Contact & Inquiries
+- **Project Scope**: Commercial Brand Films, Editorial Stills, AI Video VFX, Spatial Web Platforms.
+- **URL**: https://whyzocreations.com/#contact

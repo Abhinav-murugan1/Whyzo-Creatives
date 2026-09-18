@@ -1,0 +1,395 @@
+.drift-wall {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: layout paint;
+  perspective: var(--dw-perspective, 1200px);
+  perspective-origin: 50% 50%;
+  --dw-tile-w: 240px;
+  --dw-tile-h: 150px;
+  --dw-gap: 18px;
+  --dw-radius: 14px;
+  --dw-lift: 64px;
+  --dw-dim: 0.65;
+  --dw-gray: 0;
+  --dw-overlay: #060010;
+  --dw-edge: 55%;
+  touch-action: pan-y;
+}
+
+.drift-wall__plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: row;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.drift-wall__col {
+  position: relative;
+  width: calc(var(--dw-tile-w) + var(--dw-gap));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Intro reveal
+   Columns stay hidden while the poster cache warms, then cascade in
+   from the centre outwards. Every intro class is removed once the
+   cascade ends, so the resting wall carries no extra styling at all.
+   ------------------------------------------------------------------ */
+.drift-wall--intro .drift-wall__col {
+  opacity: 0;
+  transform: translate3d(0, 54px, 0);
+}
+
+.drift-wall--intro.is-revealing .drift-wall__col {
+  animation: dwColumnIn var(--dw-reveal-duration, 950ms) cubic-bezier(0.22, 1, 0.36, 1) var(--dw-col-delay, 0ms) both;
+}
+
+@keyframes dwColumnIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 54px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Loading readout - surfaced only when the archive warm-up is slow enough to be worth reporting */
+.drift-wall__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 196px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  animation: dwLoaderIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.drift-wall__loader.is-hiding {
+  opacity: 0;
+}
+
+.drift-wall__loader-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.drift-wall__loader-text,
+.drift-wall__loader-pct {
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.drift-wall__loader-pct {
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.72);
+  font-variant-numeric: tabular-nums;
+}
+
+.drift-wall__loader-track {
+  position: relative;
+  display: block;
+  height: 1px;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Determinate fill driven by how many posters have actually decoded */
+.drift-wall__loader-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Sheen travelling the track so the readout never looks stalled between decodes */
+.drift-wall__loader-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: dwLoaderSheen 1.6s ease-in-out infinite;
+}
+
+@keyframes dwLoaderIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 6px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes dwLoaderSheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.drift-wall__track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.drift-wall__tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: calc(var(--dw-tile-h) + var(--dw-gap));
+  flex: 0 0 auto;
+  outline: none;
+  transform-style: preserve-3d;
+  text-decoration: none;
+  contain: layout paint;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.drift-wall__inner {
+  position: absolute;
+  inset: calc(var(--dw-gap) / 2);
+  display: block;
+  border-radius: var(--dw-radius);
+  overflow: hidden;
+  background: #090910;
+  opacity: var(--dw-dim);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.drift-wall__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Video Tile Layer - Zero-cost GPU hardware texture streaming */
+.drift-wall__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Cross-fades over its own poster once the first frame decodes, so a mounting decoder never flashes black */
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.drift-wall__video.is-ready {
+  opacity: 1;
+}
+
+.drift-wall__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--dw-overlay);
+  opacity: 0.32;
+  pointer-events: none;
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Active / Hovered Tile State */
+.drift-wall__tile.is-active .drift-wall__inner,
+.drift-wall__tile:focus-visible .drift-wall__inner {
+  opacity: 1;
+  transform: translateZ(var(--dw-lift));
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 24px 60px -18px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.drift-wall__tile.is-active img,
+.drift-wall__tile:focus-visible img {
+  filter: grayscale(0) saturate(1.1);
+}
+
+.drift-wall__tile.is-active .drift-wall__overlay,
+.drift-wall__tile:focus-visible .drift-wall__overlay {
+  opacity: 0;
+}
+
+.drift-wall__tile:focus-visible .drift-wall__inner {
+  box-shadow:
+    0 24px 60px -18px rgba(0, 0, 0, 0.9),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+/* Tactile Press State */
+.drift-wall__tile:active .drift-wall__inner {
+  transform: translateZ(calc(var(--dw-lift) - 8px)) scale(0.96) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  transition-duration: 0.08s !important;
+}
+
+/* Opening State - Instant visual confirmation when clicked */
+.drift-wall__tile.is-opening .drift-wall__inner {
+  opacity: 1 !important;
+  transform: translateZ(calc(var(--dw-lift) + 12px)) scale(0.97) !important;
+  border-color: #ffffff !important;
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.85),
+    0 24px 60px -18px rgba(0, 0, 0, 0.95) !important;
+  transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.15s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.drift-wall__tile.is-opening .drift-wall__overlay {
+  opacity: 0.55 !important;
+  background: #000000 !important;
+}
+
+/* Center Opening Feedback Pill */
+.drift-wall__opening-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  animation: dwOpeningPop 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.drift-wall__opening-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+  animation: dwPulse 0.8s ease-in-out infinite alternate;
+}
+
+.drift-wall__opening-text {
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+@keyframes dwOpeningPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes dwPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-wall__plane,
+  .drift-wall__track {
+    will-change: auto;
+  }
+
+  /* No cascade and no cross-fade - content is simply present */
+  .drift-wall--intro .drift-wall__col,
+  .drift-wall--intro.is-revealing .drift-wall__col {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .drift-wall__video {
+    transition: none;
+  }
+
+  .drift-wall__loader {
+    animation: none;
+  }
+
+  .drift-wall__loader-fill {
+    transition: none;
+  }
+
+  .drift-wall__loader-track::after {
+    animation: none;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Source masters: ~24 GB of raw footage and drive exports.
+# Nothing imports these - every asset the site renders is served from Cloudinary
+# (see src/data/cloudinaryAssets.json). Keep them out of the repository.
+src/assets
+temp_upload

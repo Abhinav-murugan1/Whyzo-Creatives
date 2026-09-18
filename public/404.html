@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, follow" />
+    <!--
+      GitHub Pages has no rewrite rules: a cold load of /team/alex-vance lands here rather than on the
+      app. Re-enter index.html with the requested path carried in the query string, where the decoder
+      in index.html puts it back into the address bar. Hosts with real rewrites (see _redirects and
+      vercel.json) never reach this file.
+    -->
+    <script>
+      (function (l) {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/?/' + l.pathname.slice(1).replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1) : '') + l.hash
+        );
+      })(window.location);
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found // Whyzo Creations</title>
+    <meta name="description" content="The requested page could not be located. Return to Whyzo Creations portfolio." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+        overflow: hidden;
+        position: relative;
+      }
+      .ambient-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .container {
+        position: relative;
+        z-index: 10;
+        max-width: 580px;
+      }
+      .badge {
+        display: inline-block;
+        font-family: monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #a1a1aa;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.03);
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+      }
+      p {
+        color: #a1a1aa;
+        font-size: clamp(14px, 2vw, 16px);
+        line-height: 1.6;
+        margin-bottom: 36px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #ffffff;
+        color: #000000;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 14px 32px;
+        border-radius: 9999px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+      }
+      .btn:hover {
+        background-color: #e4e4e7;
+        transform: translateY(-2px);
+        box-shadow: 0 0 35px rgba(255, 255, 255, 0.25);
+      }
+      .brand-footer {
+        position: absolute;
+        bottom: 24px;
+        font-family: monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: #52525b;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient-glow" aria-hidden="true"></div>
+    <div class="container">
+      <span class="badge">404 // ROUTE NOT FOUND</span>
+      <h1>LOST IN SPACE</h1>
+      <p>The coordinate or asset you requested does not exist in the Whyzo Creations production matrix.</p>
+      <a href="/" class="btn">Return to Portfolio &rarr;</a>
+    </div>
+    <div class="brand-footer">WHYZO CREATIONS // 2026</div>
+  </body>
+</html>
