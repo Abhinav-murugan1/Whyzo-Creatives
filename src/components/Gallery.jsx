@@ -31,9 +31,6 @@ const Gallery = ({ onSelectWork }) => {
 
       {/* Section Title Header - Centered in Poppins & Shifted Up */}
       <Reveal className="w-full px-4 -mt-4 sm:-mt-6 md:-mt-8 mb-10 sm:mb-14 relative z-10 text-center flex flex-col items-center">
-        <span className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase block mb-2.5">
-          // CURATED PRODUCTION ARCHIVE // 2026
-        </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight font-poppins poppins-bold text-white text-center">
           <ShinyText text="GALLERY" speed={4.5} delay={3.5} color="#888888" shineColor="#ffffff" />
         </h2>

@@ -2,6 +2,12 @@ import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
 
+/*
+ * Open choreography timings. The cascade reads the same, it just gets out of the way sooner: the panel
+ * is fully in at ~0.51s and the last social link lands at ~0.62s, down from ~1.0s.
+ */
+const LAYER_STAGGER = 0.035;
+
 export const StaggeredMenu = ({
   position = 'right',
   colors = ['#121212', '#222222'],
@@ -137,13 +143,13 @@ export const StaggeredMenu = ({
       tl.fromTo(
         ls.el,
         { xPercent: ls.start },
-        { xPercent: 0, duration: 0.52, ease: 'power3.out', force3D: true },
-        i * 0.05
+        { xPercent: 0, duration: 0.38, ease: 'power3.out', force3D: true },
+        i * LAYER_STAGGER
       );
     });
-    const lastTime = layerStates.length ? (layerStates.length - 1) * 0.05 : 0;
-    const panelInsertTime = lastTime + (layerStates.length ? 0.05 : 0);
-    const panelDuration = 0.62;
+    const lastTime = layerStates.length ? (layerStates.length - 1) * LAYER_STAGGER : 0;
+    const panelInsertTime = lastTime + (layerStates.length ? LAYER_STAGGER : 0);
+    const panelDuration = 0.44;
     tl.fromTo(
       panel,
       { xPercent: panelStart },
@@ -152,15 +158,15 @@ export const StaggeredMenu = ({
     );
 
     if (itemEls.length) {
-      const itemsStart = panelInsertTime + 0.12;
+      const itemsStart = panelInsertTime + 0.08;
       tl.to(
         itemEls,
         {
           yPercent: 0,
           rotate: 0,
-          duration: 0.55,
+          duration: 0.40,
           ease: 'power3.out',
-          stagger: { each: 0.05, from: 'start' },
+          stagger: { each: 0.035, from: 'start' },
           force3D: true
         },
         itemsStart
@@ -169,24 +175,24 @@ export const StaggeredMenu = ({
         tl.to(
           numberEls,
           {
-            duration: 0.42,
+            duration: 0.30,
             ease: 'power2.out',
             '--sm-num-opacity': 1,
-            stagger: { each: 0.04, from: 'start' }
+            stagger: { each: 0.03, from: 'start' }
           },
-          itemsStart + 0.06
+          itemsStart + 0.04
         );
       }
     }
 
     if (socialTitle || socialLinks.length) {
-      const socialsStart = panelInsertTime + 0.20;
+      const socialsStart = panelInsertTime + 0.14;
       if (socialTitle) {
         tl.to(
           socialTitle,
           {
             opacity: 1,
-            duration: 0.4,
+            duration: 0.28,
             ease: 'power2.out'
           },
           socialsStart
@@ -198,15 +204,15 @@ export const StaggeredMenu = ({
           {
             y: 0,
             opacity: 1,
-            duration: 0.48,
+            duration: 0.34,
             ease: 'power3.out',
-            stagger: { each: 0.04, from: 'start' },
+            stagger: { each: 0.03, from: 'start' },
             force3D: true,
             onComplete: () => {
               gsap.set(socialLinks, { clearProps: 'opacity' });
             }
           },
-          socialsStart + 0.03
+          socialsStart + 0.02
         );
       }
     }
@@ -266,7 +272,7 @@ export const StaggeredMenu = ({
     spinTweenRef.current?.kill();
     if (opening) {
       spinTweenRef.current = gsap.to([plusH, plusV], {
-        duration: 0.38,
+        duration: 0.30,
         ease: 'power3.out',
         y: 0,
         rotate: (i) => (i === 0 ? 45 : -45)
