@@ -18,10 +18,11 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
 
       {/*
         * Narrower column than the rest of the site on purpose. Roster rows are a reading layout, and at
-        * 1700px the bio stranded itself against a 300px portrait with half a screen of dead panel between
-        * them. 1200px keeps the portrait, the copy and the action inside one comfortable measure.
+        * the site-wide 1700px the bio stranded itself against a 300px portrait with half a screen of dead
+        * panel between them. 1500px gives the rows real width while the portrait and the bio measure grow
+        * with it, so the copy still lands inside one comfortable measure instead of drifting.
         */}
-      <div className="w-full max-w-[1200px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 relative z-10">
+      <div className="w-full max-w-[1500px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 relative z-10">
         {/* Page Header */}
         <div className="reveal-in mb-10 sm:mb-12 text-center flex flex-col items-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight font-poppins poppins-bold text-center">
@@ -41,19 +42,19 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
             <article
               key={member.id}
               onClick={() => onOpenMember(member.id)}
-              className="reveal-in group relative grid grid-cols-1 sm:grid-cols-[minmax(0,15rem)_1fr] lg:grid-cols-[minmax(0,19rem)_1fr] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 cursor-pointer transition-[border-color,background-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.85)]"
+              className="reveal-in group relative grid grid-cols-1 sm:grid-cols-[minmax(0,15rem)_1fr] lg:grid-cols-[minmax(0,21rem)_1fr] xl:grid-cols-[minmax(0,24rem)_1fr] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 cursor-pointer transition-[border-color,background-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.85)]"
               style={{ '--reveal-delay': `${120 + index * 90}ms` }}
             >
               {/* Oversized roster numeral, sunk into the panel rather than sitting on it */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-2 right-4 select-none font-mono font-bold leading-none text-[5.5rem] lg:text-[8rem] text-white/[0.035] group-hover:text-white/[0.06] transition-colors duration-500"
+                className="pointer-events-none absolute -top-2 right-4 select-none font-mono font-bold leading-none text-[5.5rem] lg:text-[8rem] xl:text-[9.5rem] text-white/[0.035] group-hover:text-white/[0.06] transition-colors duration-500"
               >
                 {member.num}
               </span>
 
               {/* Portrait */}
-              <div className="relative overflow-hidden bg-zinc-900 aspect-[16/10] sm:aspect-auto sm:min-h-[19rem]">
+              <div className="relative overflow-hidden bg-zinc-900 aspect-[16/10] sm:aspect-auto sm:min-h-[19rem] xl:min-h-[22rem]">
                 <img
                   src={member.image}
                   alt={`${member.name} - ${member.role} at Whyzo Creatives`}
@@ -94,7 +95,7 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
                   </div>
 
                   {/* Vision only - specialisations, socials and stats all live on the portfolio page */}
-                  <p className="max-w-2xl text-xs sm:text-[13px] leading-relaxed text-zinc-400">
+                  <p className="max-w-3xl text-xs sm:text-[13px] leading-relaxed text-zinc-400">
                     {member.bio}
                   </p>
                 </div>
