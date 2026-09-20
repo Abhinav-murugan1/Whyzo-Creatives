@@ -54,7 +54,12 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
               </span>
 
               {/* Portrait */}
-              <div className="relative overflow-hidden bg-zinc-900 aspect-[16/10] sm:aspect-auto sm:min-h-[19rem] xl:min-h-[22rem]">
+              {/*
+                * 4:5 on mobile, not a letterbox. Every portrait in the roster is shot around 3:4, so a
+                * 16:10 stacked box threw away better than half the frame and left a band of forehead.
+                * At 4:5 the 3:4 sources lose about 6% off the bottom and nothing important is cut.
+                */}
+              <div className="relative overflow-hidden bg-zinc-900 aspect-[4/5] sm:aspect-auto sm:min-h-[19rem] xl:min-h-[22rem]">
                 <img
                   src={member.image}
                   alt={`${member.name} - ${member.role} at Whyzo Creatives`}
