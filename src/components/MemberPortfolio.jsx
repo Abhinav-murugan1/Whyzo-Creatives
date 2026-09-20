@@ -383,7 +383,11 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
 
         {/* ============================================================= */}
         {/* SELECTED WORK                                                  */}
+        {/* Only the founder keeps a project archive on his page. Everyone  */}
+        {/* else has no `works` entry, so the whole block drops out rather  */}
+        {/* than rendering an empty shelf with a "00 PROJECTS" heading.     */}
         {/* ============================================================= */}
+        {works.length > 0 && (
         <div className="reveal-in pt-10 border-t border-white/10 space-y-10" style={{ '--reveal-delay': '240ms' }}>
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2">
@@ -452,6 +456,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
             </section>
           ))}
         </div>
+        )}
       </div>
     </div>
   );

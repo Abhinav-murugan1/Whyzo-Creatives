@@ -1,4 +1,4 @@
-import { Camera, Code2, Megaphone, Palette } from 'lucide-react';
+import { Camera, Clapperboard, Code2, Megaphone, Palette } from 'lucide-react';
 import { workCatalogue } from './galleryItems';
 
 /*
@@ -59,48 +59,7 @@ const teamMembers = [
     socials: {
       linkedin: 'https://www.linkedin.com/in/whyzo-creatives-9b3212438/',
       instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
-    },
-    works: [
-      {
-        id: 'work-02',
-        title: 'Veloce Hypercar Synthetic Reveal',
-        category: 'ai',
-        categoryLabel: 'AI & Virtual VFX',
-        client: 'Veloce Automotive AG',
-        year: '2026',
-        image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=700&auto=format&fit=crop',
-        video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-        metrics: '1.2M Organic Views // Geneva Motor Show Feature',
-        deliverables: ['AI Generative Reveal Video', 'Studio Anamorphic Shoot', '3D Web Configurator', 'Press Kit Graphics'],
-        description: 'Combined synthetic neural AI rendering with real-world track videography for the global reveal of the Veloce EV Concept.'
-      },
-      {
-        id: 'work-05',
-        title: 'Neural Synthesis Cybernetic Sequence',
-        category: 'ai',
-        categoryLabel: 'AI & Virtual VFX',
-        client: 'Synthetic Arts Foundation',
-        year: '2026',
-        image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=700&auto=format&fit=crop',
-        video: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_1MB.mp4',
-        metrics: 'GenAI Film Festival Best Visual Effects',
-        deliverables: ['Custom LoRA Generation', 'Fluid Particle VFX', 'Spatial Atmos Sound', '4K Neural Upscaling'],
-        description: 'Surreal generative video exploration depicting cybernetic botanical evolution rendered at 10x traditional CGI speed.'
-      },
-      {
-        id: 'work-10',
-        title: 'Quantum Fluid Volumetric Simulation',
-        category: 'ai',
-        categoryLabel: 'AI & Virtual VFX',
-        client: 'Aetheria Neural Lab',
-        year: '2026',
-        metrics: 'Real-Time Neural Radiance Physics',
-        deliverables: ['Real-Time NeRF Simulation', 'Particle Field Dynamics', 'Spatial Audio Design'],
-        image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=700&auto=format&fit=crop',
-        video: 'https://vjs.zencdn.net/v/oceans.mp4',
-        description: 'Hyper-detailed quantum fluid dynamics rendered in real-time using neural radiance fields and generative volumetric shaders.'
-      }
-    ]
+    }
   },
   {
     id: 'anzil-s',
@@ -123,48 +82,7 @@ const teamMembers = [
     socials: {
       linkedin: 'https://www.linkedin.com/in/whyzo-creatives-9b3212438/',
       instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
-    },
-    works: [
-      {
-        id: 'work-anz-01',
-        title: 'GITEX Global Account Campaign',
-        category: 'corporate',
-        categoryLabel: 'Corporate & Brand Film',
-        client: 'Dubai World Trade Centre',
-        year: '2025',
-        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577552/events/opt_GITEX_2025.jpg',
-        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577552/events/opt_GITEX_2025.mp4',
-        metrics: '180+ Countries // Multi-Stage Account Win',
-        deliverables: ['Account Scoping', 'Budget & Deliverable Planning', 'On-Site Client Liaison', 'Post-Campaign Reporting'],
-        description: 'End-to-end account management for the studio coverage of the world largest technology exhibition, from first pitch through delivery.'
-      },
-      {
-        id: 'work-anz-02',
-        title: 'AMARA Hospitality Partnership',
-        category: 'f&b',
-        categoryLabel: 'Food & Beverage Cinema',
-        client: 'AMARA Hospitality',
-        year: '2026',
-        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789578219/fb/AMARA.jpg',
-        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789578219/fb/AMARA.mp4',
-        metrics: '48% Table Booking Lift // Retained Account',
-        deliverables: ['Partnership Pitch', 'Content Calendar Strategy', 'Performance Review Cycle'],
-        description: 'Long-running hospitality partnership built from a single content pilot into a retained monthly production agreement.'
-      },
-      {
-        id: 'work-anz-03',
-        title: 'Starbucks Creator Campaign Rollout',
-        category: 'influencer',
-        categoryLabel: 'Creator & Influencer',
-        client: 'Starbucks Coffee ME',
-        year: '2026',
-        image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577587/influencer/STARBUCKS.jpg',
-        video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577587/influencer/STARBUCKS.mp4',
-        metrics: '5.2M Impressions // 18.4% Share Rate',
-        deliverables: ['Creator Sourcing & Negotiation', 'Campaign Brief', 'Deliverable Tracking', 'Results Reporting'],
-        description: 'Creator roster sourcing, commercial negotiation and campaign reporting for a regional lifestyle rollout.'
-      }
-    ]
+    }
   },
   {
     id: 'abhinav-murugan',
@@ -193,48 +111,31 @@ const teamMembers = [
       instagram: 'https://www.instagram.com/a.bhi_v/',
       github: 'https://github.com/abhinav-murugan1',
       portfolio: 'https://abhinavmurugan.me'
-    },
-    works: [
-      {
-        id: 'work-dev-01',
-        title: 'Modern Full-Stack Web Platform',
-        category: 'web',
-        categoryLabel: 'Web & UI/UX Engineering',
-        client: 'Whyzo Digital Systems',
-        year: '2026',
-        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=700&auto=format&fit=crop',
-        video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-        metrics: 'Full Stack Architecture // React & Node.js',
-        deliverables: ['Responsive Web App', 'REST API Architecture', 'Figma Design System', 'Database Integration'],
-        description: 'End-to-end full stack web application engineered with modern component architecture, responsive layouts, and cloud API integration.'
-      },
-      {
-        id: 'work-dev-02',
-        title: 'Cross-Platform Mobile App & UI/UX',
-        category: 'web',
-        categoryLabel: 'Mobile & UI Design',
-        client: 'NextGen Mobile Tech',
-        year: '2025',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=700&auto=format&fit=crop',
-        video: 'https://cdn.jsdelivr.net/gh/mediaelement/mediaelement-files@master/echo-hereweare.mp4',
-        metrics: 'React Native // iOS & Android',
-        deliverables: ['Mobile App Architecture', 'Figma Prototyping', 'Cross-Platform UI', 'State Management'],
-        description: 'Cross-platform mobile application combining intuitive touch-friendly UX with high-performance reactive state management.'
-      },
-      {
-        id: 'work-dev-03',
-        title: 'Cloud Database & API Gateway',
-        category: 'web',
-        categoryLabel: 'Backend Engineering',
-        client: 'CloudScale Infrastructure',
-        year: '2026',
-        metrics: 'Zero-Downtime Architecture // TypeScript & SQL',
-        deliverables: ['Database Schema Design', 'Microservices API', 'Authentication Flow', 'CI/CD Deployment'],
-        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=700&auto=format&fit=crop',
-        video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-        description: 'Scalable cloud backend service featuring normalized SQL databases, real-time sync, and secured token-based authentication.'
-      }
-    ]
+    }
+  },
+  {
+    id: 'mithin',
+    num: '05',
+    name: 'Mithin',
+    role: 'Content Creator',
+    discipline: 'Content Creation & Social Media',
+    icon: Clapperboard,
+    tag: 'CONTENT & SOCIAL',
+    stat: '3 Years Exp',
+    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789902713/team/member_05.jpg',
+    bio: 'Content creator with 3 years turning brand ideas into short-form video and social campaigns. Works the whole loop - concept, shoot, cut and the posting calendar that keeps a feed moving.',
+    specialties: [
+      'Short-Form & Social Video',
+      'Content Strategy & Calendars',
+      'Social Media Management',
+      'Concept & Scripting',
+      'Trend & Format Research',
+      'Community & Engagement'
+    ],
+    awards: '3 Years Content Creation // Social Media Management',
+    socials: {
+      instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
+    }
   }
 ];
 

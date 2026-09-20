@@ -1,8 +1,7 @@
 import React from 'react';
 import ShinyText from './reactbits/ShinyText';
-import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 import { teamMembers } from '../data/teamMembers';
-import { ArrowUpRight, Globe } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const Team = ({ onBack, onInquire, onOpenMember }) => {
 
@@ -17,7 +16,12 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
         }}
       />
 
-      <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 relative z-10">
+      {/*
+        * Narrower column than the rest of the site on purpose. Roster rows are a reading layout, and at
+        * 1700px the bio stranded itself against a 300px portrait with half a screen of dead panel between
+        * them. 1200px keeps the portrait, the copy and the action inside one comfortable measure.
+        */}
+      <div className="w-full max-w-[1200px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 relative z-10">
         {/* Page Header */}
         <div className="reveal-in mb-10 sm:mb-12 text-center flex flex-col items-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight font-poppins poppins-bold text-center">
@@ -25,115 +29,77 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
           </h1>
         </div>
 
-        {/* 4 Team Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 mb-16 sm:mb-20">
-          {teamMembers.map((member, index) => {
-            return (
-              <div
-                key={member.id}
-                onClick={() => onOpenMember(member.id)}
-                className="reveal-in rounded-2xl p-6 sm:p-7 flex flex-col justify-between bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 transition-all duration-300 relative overflow-hidden cursor-pointer group hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.8)]"
-                style={{ '--reveal-delay': `${120 + index * 90}ms` }}
+        {/*
+          * Roster rows. One member per full-width row: portrait on the left, identity and vision on the
+          * right. The stacked-card grid gave every member the same small square and pushed the bio down
+          * into a cramped column; a horizontal row lets the portrait run tall and the copy breathe, and
+          * it reads like a credits list, which suits a production company. Below `sm` the row collapses
+          * back to portrait-over-copy so the photo never squeezes to a sliver.
+          */}
+        <div className="space-y-5 sm:space-y-6 mb-16 sm:mb-20">
+          {teamMembers.map((member, index) => (
+            <article
+              key={member.id}
+              onClick={() => onOpenMember(member.id)}
+              className="reveal-in group relative grid grid-cols-1 sm:grid-cols-[minmax(0,15rem)_1fr] lg:grid-cols-[minmax(0,19rem)_1fr] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 cursor-pointer transition-[border-color,background-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.85)]"
+              style={{ '--reveal-delay': `${120 + index * 90}ms` }}
+            >
+              {/* Oversized roster numeral, sunk into the panel rather than sitting on it */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-2 right-4 select-none font-mono font-bold leading-none text-[5.5rem] lg:text-[8rem] text-white/[0.035] group-hover:text-white/[0.06] transition-colors duration-500"
               >
-                {/* Visual Media / Portrait */}
-                <div className="relative aspect-[4/4.8] w-full rounded-xl overflow-hidden mb-6 bg-zinc-900">
-                  <img
-                    src={member.image}
-                    alt={`${member.name} - ${member.role} at Whyzo Creatives`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-105"
-                    style={{ transform: 'translateZ(0)' }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent pointer-events-none"></div>
+                {member.num}
+              </span>
 
-                  {/* Bottom Portrait Info */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h2 className="font-poppins poppins-bold font-bold text-xl sm:text-2xl text-white uppercase tracking-wider drop-shadow-md">
+              {/* Portrait */}
+              <div className="relative overflow-hidden bg-zinc-900 aspect-[16/10] sm:aspect-auto sm:min-h-[19rem]">
+                <img
+                  src={member.image}
+                  alt={`${member.name} - ${member.role} at Whyzo Creatives`}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[600ms] ease-out will-change-transform group-hover:scale-[1.04]"
+                  style={{ transform: 'translateZ(0)' }}
+                />
+                {/*
+                  * Dissolve the portrait into the panel instead of ending it on a hard edge - downward on
+                  * mobile where the copy sits underneath, rightward on desktop where it sits beside.
+                  */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0a0a0c] via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-[#0a0a0c]" />
+              </div>
+
+              {/* Identity & vision */}
+              <div className="relative flex flex-col justify-between gap-6 p-6 sm:p-7 lg:p-9">
+                <div className="space-y-4">
+                  {/*
+                    * Discipline tag only - the oversized numeral above already states the index, and
+                    * printing it twice on one card read as a mistake. The rule extends on hover as the
+                    * only motion in the copy column.
+                    */}
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                      {member.tag}
+                    </span>
+                    <span className="h-px w-8 bg-white/15 group-hover:w-16 group-hover:bg-white/40 transition-all duration-500 ease-out" />
+                  </div>
+
+                  <div>
+                    <h2 className="font-poppins poppins-bold font-bold text-2xl sm:text-3xl lg:text-[2.1rem] leading-none uppercase tracking-tight text-white">
                       {member.name}
                     </h2>
-                    <p className="text-xs sm:text-[13px] font-poppins font-medium text-zinc-300 mt-1 drop-shadow">
+                    <p className="mt-2.5 text-[13px] sm:text-sm font-poppins font-medium text-zinc-300">
                       {member.role}
                     </p>
                   </div>
+
+                  {/* Vision only - specialisations, socials and stats all live on the portfolio page */}
+                  <p className="max-w-2xl text-xs sm:text-[13px] leading-relaxed text-zinc-400">
+                    {member.bio}
+                  </p>
                 </div>
 
-                {/* Candidate Information & Bio */}
-                <div className="space-y-5 mb-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <p className="text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
-                      {member.bio}
-                    </p>
-                  </div>
-
-                  {/* Specialties */}
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2.5">
-                      Core Specializations
-                    </span>
-                    <div className="space-y-1.5 text-xs sm:text-[13px] text-zinc-300 font-poppins">
-                      {member.specialties.map((spec, idx) => (
-                        <div key={idx} className="text-zinc-300 leading-normal">
-                          {spec}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Action Button */}
-                <div className="pt-4.5 border-t border-white/10 flex items-center justify-between gap-2.5">
-                  <div className="flex items-center gap-1.5">
-                    {member.socials.linkedin && (
-                      <a
-                        href={member.socials.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-lg bg-zinc-900 border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white transition-colors"
-                        aria-label={`${member.name} LinkedIn`}
-                      >
-                        <LinkedinIcon className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {member.socials.instagram && (
-                      <a
-                        href={member.socials.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-lg bg-zinc-900 border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white transition-colors"
-                        aria-label={`${member.name} Instagram`}
-                      >
-                        <InstagramIcon className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {member.socials.github && (
-                      <a
-                        href={member.socials.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-lg bg-zinc-900 border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white transition-colors"
-                        aria-label={`${member.name} GitHub`}
-                      >
-                        <GithubIcon className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {member.socials.portfolio && (
-                      <a
-                        href={member.socials.portfolio}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-lg bg-zinc-900 border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white transition-colors"
-                        aria-label={`${member.name} Portfolio`}
-                      >
-                        <Globe className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
-
+                <div className="flex items-center justify-end pt-5 border-t border-white/10">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -147,10 +113,9 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
                   </button>
                 </div>
               </div>
-            );
-          })}
+            </article>
+          ))}
         </div>
-
 
         {/* Collective Statement / CTA Banner */}
         <div className="rounded-2xl bg-zinc-950 border border-white/15 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">

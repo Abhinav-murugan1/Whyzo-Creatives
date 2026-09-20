@@ -35,7 +35,7 @@ const socialImage = url => {
 
 /*
  * The roster lives in an ESM module that imports lucide-react and a JSON manifest, which plain Node
- * cannot load without a bundler. Only four scalar fields are needed here, so they are read straight
+ * cannot load without a bundler. Only a few scalar fields are needed here, so they are read straight
  * out of the source. The member count is asserted below so a format change fails the build loudly
  * rather than silently shipping wrong cards.
  */
@@ -58,10 +58,11 @@ const readMembers = () => {
   });
 };
 
+const EXPECTED_MEMBERS = 5;
 const members = readMembers();
-if (members.length !== 4 || members.some(m => !m.name || !m.role || !m.bio)) {
+if (members.length !== EXPECTED_MEMBERS || members.some(m => !m.name || !m.role || !m.bio || !m.image)) {
   throw new Error(
-    `prerender: expected 4 fully-populated members, parsed ${members.length}. ` +
+    `prerender: expected ${EXPECTED_MEMBERS} fully-populated members, parsed ${members.length}. ` +
       'src/data/teamMembers.js format changed - update scripts/prerender.mjs.'
   );
 }

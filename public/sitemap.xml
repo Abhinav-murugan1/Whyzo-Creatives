@@ -40,6 +40,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://whyzocreatives.com/team/mithin</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://whyzocreatives.com/#gallery</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
