@@ -5,8 +5,13 @@ import { ArrowUpRight } from 'lucide-react';
 
 const Team = ({ onBack, onInquire, onOpenMember }) => {
 
+  /*
+   * The page carries a flat 112px of top padding rather than a responsive ramp. The fixed menu header is a
+   * constant 92px tall at every width, so the old 64/80/96px ramp ran the page heading straight under it:
+   * 28px of overlap on a phone, 12px at tablet, and 4px of clearance on desktop.
+   */
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-16 sm:pt-20 md:pt-24 pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-28 pb-20 relative overflow-hidden">
       {/* Background Ambience & Grid - GPU Accelerated Gradient (0 Blur Overhead) */}
       <div className="absolute inset-0 bg-grid-lines opacity-15 pointer-events-none"></div>
       <div 
