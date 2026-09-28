@@ -182,9 +182,9 @@ const Services = ({ onSelectService }) => {
 
       <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Section Header - Centered in Poppins & Shifted Up Alone */}
-        <Reveal className="-mt-12 sm:-mt-18 md:-mt-24 mb-10 sm:mb-14 md:mb-16">
-          <SectionHeading index="03" eyebrow="What We Make" title="OUR SERVICES" />
-          <p className="mt-4 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl font-poppins font-normal leading-relaxed">
+        <Reveal className="-mt-12 sm:-mt-18 md:-mt-24 mb-10 sm:mb-14 md:mb-16 text-center flex flex-col justify-center items-center">
+          <SectionHeading title="OUR SERVICES" />
+          <p className="mt-3 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl mx-auto font-poppins font-normal leading-relaxed">
             We make brands look good. And feel even better.
 
           </p>

@@ -30,9 +30,9 @@ const Gallery = ({ onSelectWork }) => {
       <div className="absolute inset-0 bg-grid-lines opacity-10 pointer-events-none"></div>
 
       {/* Section Title Header - Centered in Poppins & Shifted Up */}
-      <Reveal className="w-full px-4 -mt-4 sm:-mt-6 md:-mt-8 mb-10 sm:mb-14 relative z-10">
-        <SectionHeading index="02" eyebrow="Selected Output" title="GALLERY" />
-        <p className="mt-4 text-xs sm:text-sm md:text-base text-zinc-400 max-w-2xl font-poppins font-normal leading-relaxed [text-wrap:balance]">
+      <Reveal className="w-full px-4 -mt-4 sm:-mt-6 md:-mt-8 mb-10 sm:mb-14 relative z-10 text-center flex flex-col items-center">
+        <SectionHeading title="GALLERY" />
+        <p className="mt-3.5 text-xs sm:text-sm md:text-base text-zinc-400 max-w-4xl mx-auto font-poppins font-normal leading-relaxed [text-wrap:balance]">
           A collection of films, campaigns, reels, events, and visuals we’ve created{' '}
           <span className="whitespace-nowrap">along the way.</span>
         </p>

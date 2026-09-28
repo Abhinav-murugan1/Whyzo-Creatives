@@ -159,9 +159,9 @@ const ContactSection = ({ initialService }) => {
 
       <div className="w-full max-w-[1700px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24 relative z-10">
         {/* Section Header */}
-        <Reveal className="-mt-6 sm:-mt-10 md:-mt-12 mb-12 sm:mb-16">
-          <SectionHeading index="05" eyebrow="Enquiries" title="START A PROJECT" />
-          <p className="mt-4 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl font-poppins font-normal leading-relaxed">
+        <Reveal className="-mt-6 sm:-mt-10 md:-mt-12 mb-12 sm:mb-16 text-center flex flex-col justify-center items-center">
+          <SectionHeading title="START A PROJECT" />
+          <p className="mt-3 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl mx-auto font-poppins font-normal leading-relaxed">
             Have a project in mind? Share your vision and let's craft something extraordinary together.
           </p>
         </Reveal>

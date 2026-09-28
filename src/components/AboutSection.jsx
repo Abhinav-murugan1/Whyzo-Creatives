@@ -18,12 +18,12 @@ const AboutSection = () => {
 
       <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Section Header */}
-        <Reveal className="mb-12 sm:mb-16">
-          <SectionHeading index="01" eyebrow="Who We Are" title="ABOUT THE COMPANY" />
+        <Reveal className="mb-12 sm:mb-16 text-center flex flex-col items-center">
+          <SectionHeading title="ABOUT THE COMPANY" />
         </Reveal>
 
         {/* Studio Manifesto Statement */}
-        <Reveal delay={120} className="max-w-5xl">
+        <Reveal delay={120} className="max-w-6xl mx-auto text-center">
           <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-snug tracking-tight text-zinc-200 font-poppins [text-wrap:balance]">
             Whyzo Creatives is a creative production company for{' '}
             <span className="text-white font-semibold">
@@ -34,7 +34,7 @@ const AboutSection = () => {
               more than basic content.
             </span>
           </p>
-          <p className="mt-8 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-400 max-w-3xl leading-relaxed font-normal font-poppins">
+          <p className="mt-8 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed font-normal font-poppins [text-wrap:balance]">
             We create commercials, social content, campaigns, events, photography &amp; visual stories with a focus on making{' '}
             <span className="text-zinc-200 font-medium whitespace-nowrap">
               every frame feel fresh.
