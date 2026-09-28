@@ -11,7 +11,9 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  /* dvh, not vh: the mobile URL bar makes 100vh taller than the visible viewport, which pushed the
+     menu panel past the bottom edge and left its last links unreachable behind the browser chrome. */
+  height: 100dvh;
   z-index: 50;
   overflow: hidden;
 }

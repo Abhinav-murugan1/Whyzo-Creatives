@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import ShinyText from './reactbits/ShinyText';
+import SectionHeading from './SectionHeading';
+import MagneticButton from './MagneticButton';
+import {
+  CURRENCIES,
+  CURRENCY_ORDER,
+  customAmountError,
+  formatCustomAmount,
+  recommendCurrency
+} from '../lib/currency';
 import Reveal from './Reveal';
 import { AlertTriangle, Loader2, Send, CheckCircle } from 'lucide-react';
 
@@ -33,18 +41,28 @@ const allCategories = [
   'Influencer Marketing'
 ];
 
-const budgetRanges = [
-  '< $5,000',
-  '$5,000 - $15,000',
-  '$15,000 - $50,000',
-  '$50,000+'
-];
-
 const ContactSection = ({ initialService }) => {
   const [selectedServices, setSelectedServices] = useState(['Videography']);
   const [prevInitial, setPrevInitial] = useState(initialService);
   const [selectedCategory, setSelectedCategory] = useState('Automotive');
-  const [selectedBudget, setSelectedBudget] = useState('$15,000 - $50,000');
+  /*
+   * Seeded lazily so the region check runs once on mount rather than on every render. The tier is stored
+   * by id, not by label, so switching currency re-prices the selection instead of clearing it.
+   */
+  const [currency, setCurrency] = useState(() => recommendCurrency());
+  const [recommended] = useState(() => recommendCurrency());
+  /* Raw digits only. Grouping is applied for display, so a half-typed figure is never fed back in. */
+  const [customAmount, setCustomAmount] = useState('');
+  const [budgetTouched, setBudgetTouched] = useState(false);
+
+  /*
+   * The budget is optional. Plenty of genuine enquiries arrive before a number exists, and refusing to
+   * send those would cost real leads to protect a field nobody has to fill. A figure is only validated
+   * once something has actually been typed.
+   */
+  const hasBudget = customAmount.length > 0;
+  const budgetError = hasBudget ? customAmountError(customAmount, currency) : null;
+  const selectedBudget = hasBudget ? formatCustomAmount(customAmount, currency) : 'Not specified';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,6 +95,13 @@ const ContactSection = ({ initialService }) => {
     e.preventDefault();
     if (!formData.name || !formData.email || isSending) return;
 
+    /* An empty budget is fine; a typed one has to be a real figure */
+    if (budgetError) {
+      setBudgetTouched(true);
+      document.getElementById('custom-budget')?.focus();
+      return;
+    }
+
     if (!EMAILJS_PUBLIC_KEY) {
       setSendError('Email is not configured yet. Set VITE_EMAILJS_PUBLIC_KEY and redeploy.');
       return;
@@ -91,7 +116,7 @@ const ContactSection = ({ initialService }) => {
       formData.company ? `Company: ${formData.company}` : null,
       `Services: ${selectedServices.join(', ')}`,
       `Category: ${selectedCategory}`,
-      `Budget: ${selectedBudget}`,
+      hasBudget ? `Budget: ${selectedBudget} (${currency})` : 'Budget: not specified',
       '',
       'Brief:',
       formData.brief || '(no brief provided)'
@@ -113,7 +138,8 @@ const ContactSection = ({ initialService }) => {
           company: formData.company,
           services: selectedServices.join(', '),
           category: selectedCategory,
-          budget: selectedBudget
+          budget: hasBudget ? `${selectedBudget} (${currency})` : 'Not specified',
+          currency
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
       );
@@ -133,17 +159,15 @@ const ContactSection = ({ initialService }) => {
 
       <div className="w-full max-w-[1700px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24 relative z-10">
         {/* Section Header */}
-        <Reveal className="-mt-6 sm:-mt-10 md:-mt-12 mb-12 sm:mb-16 text-center flex flex-col justify-center items-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight font-poppins poppins-bold text-center">
-            <ShinyText text="START A PROJECT" speed={4.5} delay={3.5} color="#888888" shineColor="#ffffff" />
-          </h2>
-          <p className="mt-3 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl mx-auto font-poppins font-normal leading-relaxed">
+        <Reveal className="-mt-6 sm:-mt-10 md:-mt-12 mb-12 sm:mb-16">
+          <SectionHeading index="05" eyebrow="Enquiries" title="START A PROJECT" />
+          <p className="mt-4 text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl font-poppins font-normal leading-relaxed">
             Have a project in mind? Share your vision and let's craft something extraordinary together.
           </p>
         </Reveal>
 
         {submitted ? (
-          <div className="max-w-2xl mx-auto p-10 rounded-2xl bg-zinc-950 border border-white/20 text-center space-y-5 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+          <div className="max-w-2xl mx-auto p-10 rounded-2xl bg-zinc-950 border border-white/20 text-center space-y-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.9)]">
             <div className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center mx-auto">
               <CheckCircle className="w-7 h-7" />
             </div>
@@ -180,7 +204,7 @@ const ContactSection = ({ initialService }) => {
                         onClick={() => toggleService(srv)}
                         className={`px-4 py-2.5 rounded-xl text-xs font-sans uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                           isChecked
-                            ? 'bg-white text-black font-semibold shadow-[0_0_15px_rgba(255,255,255,0.15)]'
+                            ? 'bg-white text-black font-semibold shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)]'
                             : 'bg-zinc-950 text-zinc-400 border border-white/10 hover:border-white/30 hover:text-white'
                         }`}
                       >
@@ -219,28 +243,99 @@ const ContactSection = ({ initialService }) => {
 
               {/* Step 3: Budget Range */}
               <div>
-                <label className="block text-[11px] font-sans font-semibold uppercase tracking-widest text-zinc-300 mb-4">
-                  ESTIMATED BUDGET RANGE
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  {budgetRanges.map((bgt) => {
-                    const isSelected = selectedBudget === bgt;
-                    return (
-                      <button
-                        type="button"
-                        key={bgt}
-                        onClick={() => setSelectedBudget(bgt)}
-                        className={`p-3 rounded-xl text-xs font-sans uppercase tracking-wider transition-all duration-300 cursor-pointer text-center ${
-                          isSelected
-                            ? 'bg-white text-black font-semibold border-2 border-white'
-                            : 'bg-zinc-950 text-zinc-400 border border-white/10 hover:border-white/30 hover:text-white'
-                        }`}
-                      >
-                        {bgt}
-                      </button>
-                    );
-                  })}
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <label className="block text-[11px] font-sans font-semibold uppercase tracking-widest text-zinc-300">
+                    ESTIMATED BUDGET
+                  </label>
+
+                  {/* Currency switch. Defaults to the visitor's region, stays theirs to override. */}
+                  <div
+                    className="inline-flex items-center rounded-full border border-white/10 bg-zinc-950 p-0.5"
+                    role="group"
+                    aria-label="Budget currency"
+                  >
+                    {CURRENCY_ORDER.map((code) => {
+                      const isActive = currency === code;
+                      const isRecommended = recommended === code;
+                      return (
+                        <button
+                          type="button"
+                          key={code}
+                          onClick={() => setCurrency(code)}
+                          aria-pressed={isActive}
+                          title={isRecommended ? `${code} - recommended for your region` : `Show budgets in ${code}`}
+                          className={`px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-wider transition-colors cursor-pointer ${
+                            isActive
+                              ? 'bg-white text-black font-bold'
+                              : 'text-zinc-400 hover:text-white'
+                          }`}
+                        >
+                          {CURRENCIES[code].label}
+                          {isRecommended && (
+                            <span
+                              aria-hidden="true"
+                              className={`ml-1.5 inline-block w-1 h-1 rounded-full align-middle ${
+                                isActive ? 'bg-black/50' : 'bg-emerald-400'
+                              }`}
+                            />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
+
+                <div>
+                  <label
+                    htmlFor="custom-budget"
+                    className="block text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5"
+                  >
+                    AMOUNT IN {CURRENCIES[currency].label} <span className="text-zinc-600">(optional)</span>
+                  </label>
+
+                  <div className="relative">
+                    <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-mono text-zinc-500">
+                      {CURRENCIES[currency].symbol.trim()}
+                    </span>
+                    <input
+                      id="custom-budget"
+                      /*
+                       * inputMode numeric rather than type=number: number inputs bring a spinner, let
+                       * the wheel silently change the value on scroll, and reject the grouped display.
+                       */
+                      type="text"
+                      inputMode="numeric"
+                      autoComplete="off"
+                      value={formatCustomAmount(customAmount, currency).replace(CURRENCIES[currency].symbol, '')}
+                      onChange={(e) => setCustomAmount(e.target.value.replace(/\D/g, '').slice(0, 12))}
+                      onBlur={() => setBudgetTouched(true)}
+                      placeholder="0"
+                      aria-invalid={Boolean(budgetTouched && budgetError)}
+                      aria-describedby={budgetTouched && budgetError ? 'custom-budget-error' : 'custom-budget-hint'}
+                      className={`w-full pl-10 pr-4 py-3 rounded-xl bg-zinc-900 border text-white placeholder-zinc-600 focus:outline-none text-sm font-mono ${
+                        budgetTouched && budgetError
+                          ? 'border-red-500/50 focus:border-red-400'
+                          : 'border-white/10 focus:border-white'
+                      }`}
+                    />
+                  </div>
+
+                  {budgetTouched && budgetError ? (
+                    <p id="custom-budget-error" role="alert" className="mt-1.5 text-[11px] text-red-300">
+                      {budgetError}
+                    </p>
+                  ) : (
+                    <p id="custom-budget-hint" className="mt-1.5 text-[11px] text-zinc-500">
+                      Approximate is fine - it only helps us scope the right crew. Leave it blank if you are not sure yet.
+                    </p>
+                  )}
+                </div>
+
+                {recommended === currency && (
+                  <p className="mt-2.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+                    Showing {CURRENCIES[currency].label} - recommended for your region
+                  </p>
+                )}
               </div>
             </div>
 
@@ -307,15 +402,15 @@ const ContactSection = ({ initialService }) => {
                 </div>
               </div>
 
-              <button
+              <MagneticButton
                 type="submit"
                 disabled={isSending}
-                className="w-full py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {/* Label stays put - a morphing "Transmitting..." read as a chat typing indicator */}
                 <span>Transmit Inquiry</span>
                 {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-              </button>
+              </MagneticButton>
 
               {sendError && (
                 <div

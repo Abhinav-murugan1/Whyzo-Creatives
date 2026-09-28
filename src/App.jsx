@@ -200,7 +200,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans antialiased">
+    <div className="min-h-[100dvh] bg-black text-white selection:bg-white selection:text-black font-sans antialiased">
       {/* Header & Staggered Menu */}
       <Header 
         currentPage={currentPage} 
@@ -211,7 +211,7 @@ function App() {
       {/* Main Page Content - Sits on top of the static footer with hardware-accelerated crisp boundary */}
       <main className="relative z-10 bg-black border-b border-white/10">
         {currentPage === 'team' ? (
-          <Suspense fallback={<div className="min-h-screen bg-black" />}>
+          <Suspense fallback={<div className="min-h-[100dvh] bg-black" />}>
             <Team
               onBack={() => handleNavigate('home')}
               onInquire={handleSelectService}
@@ -219,7 +219,7 @@ function App() {
             />
           </Suspense>
         ) : currentPage === 'member' ? (
-          <Suspense fallback={<div className="min-h-screen bg-black" />}>
+          <Suspense fallback={<div className="min-h-[100dvh] bg-black" />}>
             <MemberPortfolio
               member={activeMember}
               onBack={() => handleNavigate('team')}

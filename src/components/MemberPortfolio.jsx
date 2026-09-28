@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ShinyText from './reactbits/ShinyText';
 import TopoField from '@/components/ui/topo-field';
 import { categoryRank, previewVideo, sizedAsset } from '../data/galleryItems';
+import { croppedPortrait } from '../lib/cloudinary';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 import {
   ArrowLeft,
@@ -203,7 +204,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
   const MemberIcon = member.icon;
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-16 sm:pt-20 md:pt-24 pb-20 relative overflow-hidden">
+    <div className="min-h-[100dvh] bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-16 sm:pt-20 md:pt-24 pb-20 relative overflow-hidden">
       {/*
         Animated topographic backdrop. Fixed to the viewport rather than the (tall) page so the
         shader only ever paints one screen. Vignettes keep the copy readable over the contour lines.
@@ -251,7 +252,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
           <div className="reveal-in md:col-span-5 lg:col-span-4 space-y-4" style={{ '--reveal-delay': '80ms' }}>
             <div className="relative aspect-[4/4.8] w-full rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 shadow-xl">
               <img
-                src={member.image}
+                src={croppedPortrait(member.image, member.portraitCrop, 900)}
                 alt={member.name}
                 fetchPriority="high"
                 decoding="async"

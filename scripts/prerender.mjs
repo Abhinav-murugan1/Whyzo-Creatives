@@ -58,7 +58,7 @@ const readMembers = () => {
   });
 };
 
-const EXPECTED_MEMBERS = 5;
+const EXPECTED_MEMBERS = 4;
 const members = readMembers();
 if (members.length !== EXPECTED_MEMBERS || members.some(m => !m.name || !m.role || !m.bio || !m.image)) {
   throw new Error(

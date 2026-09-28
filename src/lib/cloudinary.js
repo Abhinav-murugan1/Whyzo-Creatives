@@ -37,6 +37,24 @@ export const sizedAsset = (url, width = 800) => {
 };
 
 /**
+ * Portrait with an optional hard crop baked in before the width cap.
+ *
+ * Some roster photos are wide environmental shots where the subject sits small and low in the frame -
+ * dropped into the tall 4:4.8 card box they show mostly sky. `crop` is a Cloudinary crop component
+ * (c_crop,x_,y_,w_,h_) sized to the card's own aspect ratio, so the delivered image needs no further
+ * cropping and stays pixel-sharp. Members without a crop pass straight through to `sizedAsset`.
+ *
+ * The crop lives here rather than on the stored `image` URL on purpose: the prerenderer rewrites that
+ * raw URL into a 1200x630 og:image, and a crop already present in the URL would have its coordinates
+ * applied to the resized output instead of the master.
+ */
+export const croppedPortrait = (url, crop, width = 800) => {
+  if (!crop) return sizedAsset(url, width);
+  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
+  return url.replace('/upload/', `/upload/${crop}/f_auto,q_auto,w_${width},c_limit/`);
+};
+
+/**
  * Lightweight 480p H.264 preview used for inline hover playback and the drifting gallery wall.
  * Video stays f_mp4 on purpose - it is the format with universal inline-playback support.
  */

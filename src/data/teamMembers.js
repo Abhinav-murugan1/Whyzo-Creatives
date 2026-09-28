@@ -1,4 +1,4 @@
-import { Camera, Clapperboard, Code2, Megaphone, Palette } from 'lucide-react';
+import { Camera, Clapperboard, Code2, Palette } from 'lucide-react';
 import { workCatalogue } from './galleryItems';
 
 /*
@@ -62,60 +62,8 @@ const teamMembers = [
     }
   },
   {
-    id: 'anzil-s',
-    num: '03',
-    name: 'Anzil S',
-    role: 'Sales & Marketing',
-    discipline: 'Client Partnerships & Campaign Strategy',
-    icon: Megaphone,
-    tag: 'GROWTH // CLIENT PARTNERSHIPS',
-    stat: '40+ Accounts',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789761416/team/member_03.jpg',
-    bio: 'Connecting brands with the production floor - scoping campaigns, shaping production budgets, and turning first conversations into long-running client partnerships across the region.',
-    specialties: [
-      'Client Acquisition & Retention',
-      'Campaign Scoping & Budgeting',
-      'Brand Partnership Strategy',
-      'Market & Competitor Research'
-    ],
-    awards: 'Regional Growth Lead // 40+ Brand Accounts',
-    socials: {
-      linkedin: 'https://www.linkedin.com/in/whyzo-creatives-9b3212438/',
-      instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
-    }
-  },
-  {
-    id: 'abhinav-murugan',
-    num: '04',
-    name: 'Abhinav Murugan',
-    role: 'Full Stack Developer / UI/UX Designer',
-    discipline: 'Full Stack Engineering & UI/UX',
-    icon: Code2,
-    tag: 'FULL STACK & UI/UX ARCHITECTURE',
-    stat: 'Modern Full-Stack',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789741005/team/member_04.jpg',
-    bio: 'A full stack developer and creative technologist building modern digital experiences at the intersection of design and engineering. Specializing in responsive web platforms, cross-platform mobile apps, robust backend systems, and detail-focused UI/UX design to transform ideas into scalable, intuitive digital products.',
-    specialties: [
-      'Full Stack Web & Mobile Development',
-      'Frontend & Backend Engineering',
-      'React & React Native Development',
-      'UI/UX Design & Figma Architecture',
-      'REST API & Cloud Integration',
-      'Database Design & Management',
-      'Modern JavaScript & TypeScript',
-      'Interactive & Modern UI Development'
-    ],
-    awards: 'Full Stack & UI/UX // Scalable Systems & Modern Interfaces',
-    socials: {
-      linkedin: 'https://www.linkedin.com/in/abhinav-murugan/',
-      instagram: 'https://www.instagram.com/a.bhi_v/',
-      github: 'https://github.com/abhinav-murugan1',
-      portfolio: 'https://abhinavmurugan.me'
-    }
-  },
-  {
     id: 'mithin',
-    num: '05',
+    num: '03',
     name: 'Mithin',
     role: 'Content Creator',
     discipline: 'Content Creation & Social Media',
@@ -135,6 +83,37 @@ const teamMembers = [
     awards: '3 Years Content Creation // Social Media Management',
     socials: {
       instagram: 'https://www.instagram.com/whyzo.ae?stkn=dnBnMWNkY3V0cWt0'
+    }
+  },
+  {
+    id: 'abhinav-murugan',
+    num: '04',
+    name: 'Abhinav Murugan',
+    role: 'Full Stack Developer / UI/UX Designer',
+    discipline: 'Full Stack Engineering & UI/UX',
+    icon: Code2,
+    tag: 'FULL STACK & UI/UX ARCHITECTURE',
+    stat: 'Modern Full-Stack',
+    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789741005/team/member_04.jpg',
+    /* Wide landscape frame - subject sits small and low, so the card crops in on him */
+    portraitCrop: 'c_crop,x_128,y_350,w_542,h_650',
+    bio: 'A full stack developer and creative technologist building modern digital experiences at the intersection of design and engineering. Specializing in responsive web platforms, cross-platform mobile apps, robust backend systems, and detail-focused UI/UX design to transform ideas into scalable, intuitive digital products.',
+    specialties: [
+      'Full Stack Web & Mobile Development',
+      'Frontend & Backend Engineering',
+      'React & React Native Development',
+      'UI/UX Design & Figma Architecture',
+      'REST API & Cloud Integration',
+      'Database Design & Management',
+      'Modern JavaScript & TypeScript',
+      'Interactive & Modern UI Development'
+    ],
+    awards: 'Full Stack & UI/UX // Scalable Systems & Modern Interfaces',
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/abhinav-murugan/',
+      instagram: 'https://www.instagram.com/a.bhi_v/',
+      github: 'https://github.com/abhinav-murugan1',
+      portfolio: 'https://abhinavmurugan.me'
     }
   }
 ];

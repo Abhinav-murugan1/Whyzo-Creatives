@@ -1,6 +1,8 @@
 import React from 'react';
 import ShinyText from './reactbits/ShinyText';
 import { teamMembers } from '../data/teamMembers';
+import { croppedPortrait } from '../lib/cloudinary';
+import MagneticButton from './MagneticButton';
 import { ArrowUpRight } from 'lucide-react';
 
 const Team = ({ onBack, onInquire, onOpenMember }) => {
@@ -11,7 +13,7 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
    * 28px of overlap on a phone, 12px at tablet, and 4px of clearance on desktop.
    */
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-28 pb-20 relative overflow-hidden">
+    <div className="min-h-[100dvh] bg-black text-white selection:bg-white selection:text-black font-sans antialiased pt-28 pb-20 relative overflow-hidden">
       {/* Background Ambience & Grid - GPU Accelerated Gradient (0 Blur Overhead) */}
       <div className="absolute inset-0 bg-grid-lines opacity-15 pointer-events-none"></div>
       <div 
@@ -21,13 +23,7 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
         }}
       />
 
-      {/*
-        * Narrower column than the rest of the site on purpose. Roster rows are a reading layout, and at
-        * the site-wide 1700px the bio stranded itself against a 300px portrait with half a screen of dead
-        * panel between them. 1500px gives the rows real width while the portrait and the bio measure grow
-        * with it, so the copy still lands inside one comfortable measure instead of drifting.
-        */}
-      <div className="w-full max-w-[1500px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 relative z-10">
+      <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 relative z-10">
         {/* Page Header */}
         <div className="reveal-in mb-10 sm:mb-12 text-center flex flex-col items-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight font-poppins poppins-bold text-center">
@@ -35,96 +31,60 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
           </h1>
         </div>
 
-        {/*
-          * Roster rows. One member per full-width row: portrait on the left, identity and vision on the
-          * right. The stacked-card grid gave every member the same small square and pushed the bio down
-          * into a cramped column; a horizontal row lets the portrait run tall and the copy breathe, and
-          * it reads like a credits list, which suits a production company. Below `sm` the row collapses
-          * back to portrait-over-copy so the photo never squeezes to a sliver.
-          */}
-        <div className="space-y-5 sm:space-y-6 mb-16 sm:mb-20">
+        {/* Team Members Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 mb-16 sm:mb-20">
           {teamMembers.map((member, index) => (
-            <article
+            <div
               key={member.id}
               onClick={() => onOpenMember(member.id)}
-              className="reveal-in group relative grid grid-cols-1 sm:grid-cols-[minmax(0,15rem)_1fr] lg:grid-cols-[minmax(0,21rem)_1fr] xl:grid-cols-[minmax(0,24rem)_1fr] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 cursor-pointer transition-[border-color,background-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.85)]"
+              className="reveal-in rounded-2xl p-6 sm:p-7 flex flex-col justify-between bg-[#0a0a0c] border border-white/10 hover:border-white/35 hover:bg-zinc-950/80 transition-all duration-300 relative overflow-hidden cursor-pointer group hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.8)]"
               style={{ '--reveal-delay': `${120 + index * 90}ms` }}
             >
-              {/* Oversized roster numeral, sunk into the panel rather than sitting on it */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-2 right-4 select-none font-mono font-bold leading-none text-[5.5rem] lg:text-[8rem] xl:text-[9.5rem] text-white/[0.035] group-hover:text-white/[0.06] transition-colors duration-500"
-              >
-                {member.num}
-              </span>
-
-              {/* Portrait */}
-              {/*
-                * 4:5 on mobile, not a letterbox. Every portrait in the roster is shot around 3:4, so a
-                * 16:10 stacked box threw away better than half the frame and left a band of forehead.
-                * At 4:5 the 3:4 sources lose about 6% off the bottom and nothing important is cut.
-                */}
-              <div className="relative overflow-hidden bg-zinc-900 aspect-[4/5] sm:aspect-auto sm:min-h-[19rem] xl:min-h-[22rem]">
+              {/* Visual Media / Portrait */}
+              <div className="relative aspect-[4/4.8] w-full rounded-xl overflow-hidden mb-6 bg-zinc-900">
                 <img
-                  src={member.image}
+                  src={croppedPortrait(member.image, member.portraitCrop, 600)}
                   alt={`${member.name} - ${member.role} at Whyzo Creatives`}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[600ms] ease-out will-change-transform group-hover:scale-[1.04]"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 ease-out will-change-transform group-hover:scale-105"
                   style={{ transform: 'translateZ(0)' }}
                 />
-                {/*
-                  * Dissolve the portrait into the panel instead of ending it on a hard edge - downward on
-                  * mobile where the copy sits underneath, rightward on desktop where it sits beside.
-                  */}
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0a0a0c] via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-[#0a0a0c]" />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent pointer-events-none"></div>
 
-              {/* Identity & vision */}
-              <div className="relative flex flex-col justify-between gap-6 p-6 sm:p-7 lg:p-9">
-                <div className="space-y-4">
-                  {/*
-                    * Discipline tag only - the oversized numeral above already states the index, and
-                    * printing it twice on one card read as a mistake. The rule extends on hover as the
-                    * only motion in the copy column.
-                    */}
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
-                      {member.tag}
-                    </span>
-                    <span className="h-px w-8 bg-white/15 group-hover:w-16 group-hover:bg-white/40 transition-all duration-500 ease-out" />
-                  </div>
-
-                  <div>
-                    <h2 className="font-poppins poppins-bold font-bold text-2xl sm:text-3xl lg:text-[2.1rem] leading-none uppercase tracking-tight text-white">
-                      {member.name}
-                    </h2>
-                    <p className="mt-2.5 text-[13px] sm:text-sm font-poppins font-medium text-zinc-300">
-                      {member.role}
-                    </p>
-                  </div>
-
-                  {/* Vision only - specialisations, socials and stats all live on the portfolio page */}
-                  <p className="max-w-3xl text-xs sm:text-[13px] leading-relaxed text-zinc-400">
-                    {member.bio}
+                {/* Bottom Portrait Info */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h2 className="font-poppins poppins-bold font-bold text-xl sm:text-2xl text-white uppercase tracking-wider drop-shadow-md">
+                    {member.name}
+                  </h2>
+                  <p className="text-xs sm:text-[13px] font-poppins font-medium text-zinc-300 mt-1 drop-shadow">
+                    {member.role}
                   </p>
                 </div>
-
-                <div className="flex items-center justify-end pt-5 border-t border-white/10">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenMember(member.id);
-                    }}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/10 hover:bg-white text-white hover:text-black group-hover:bg-white group-hover:text-black transition-colors cursor-pointer"
-                  >
-                    <span>View Portfolio</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
               </div>
-            </article>
+
+              {/* Vision only - specialisations, socials and stats all live on the portfolio page */}
+              <div className="flex-1">
+                <p className="text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
+                  {member.bio}
+                </p>
+              </div>
+
+              {/* Card Action Button */}
+              <div className="pt-5 mt-6 border-t border-white/10 flex items-center justify-end">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenMember(member.id);
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/10 hover:bg-white text-white hover:text-black group-hover:bg-white group-hover:text-black transition-colors cursor-pointer"
+                >
+                  <span>View Portfolio</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
           ))}
         </div>
 
@@ -149,7 +109,7 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
             >
               Explore Services
             </button>
-            <button
+            <MagneticButton
               onClick={() => {
                 if (onInquire) {
                   onInquire('General Production');
@@ -157,10 +117,10 @@ const Team = ({ onBack, onInquire, onOpenMember }) => {
                   onBack();
                 }
               }}
-              className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors cursor-pointer"
+              className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors cursor-pointer shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)]"
             >
               Start a Project
-            </button>
+            </MagneticButton>
           </div>
         </div>
       </div>

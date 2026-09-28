@@ -144,7 +144,7 @@ const WorkCategories = ({ onSelectProject }) => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-white text-black font-semibold shadow-[0_0_15px_rgba(255,255,255,0.2)]'
+                  ? 'bg-white text-black font-semibold shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)]'
                   : 'bg-zinc-900/80 text-zinc-400 border border-white/10 hover:border-white/30 hover:text-white'
               }`}
             >

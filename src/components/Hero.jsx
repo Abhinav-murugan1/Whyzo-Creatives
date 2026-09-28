@@ -92,7 +92,7 @@ const Hero = () => {
   const backdropReady = useIdleMount();
 
   return (
-    <section id="hero" className="relative min-h-screen w-full bg-black text-white flex flex-col justify-between overflow-hidden pt-36 sm:pt-56 md:pt-64 pb-20 sm:pb-36 md:pb-44">
+    <section id="hero" className="relative min-h-[100dvh] w-full bg-black text-white flex flex-col justify-between overflow-hidden pt-36 sm:pt-56 md:pt-64 pb-20 sm:pb-36 md:pb-44">
       {/* 3D Beams Background Component from React Bits */}
       <div className="absolute inset-0 w-full h-full pointer-events-none opacity-60 z-0">
         {/*

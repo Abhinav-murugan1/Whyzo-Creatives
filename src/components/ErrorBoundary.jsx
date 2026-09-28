@@ -38,7 +38,7 @@ class ErrorBoundary extends React.Component {
     if (!error) return this.props.children;
 
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20 font-sans">
+      <div className="min-h-[100dvh] bg-black text-white flex items-center justify-center px-6 py-20 font-sans">
         <div className="w-full max-w-xl text-center">
           <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 mb-4">
             // Something broke

@@ -91,7 +91,7 @@ const EditionsSection = () => {
                   onClick={() => setActiveTab(feat)}
                   className={`w-full text-left p-6 rounded-2xl transition-all duration-300 cursor-pointer flex items-center justify-between border ${
                     isSelected
-                      ? 'bg-white text-black border-white shadow-[0_0_25px_rgba(255,255,255,0.15)]'
+                      ? 'bg-white text-black border-white shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)]'
                       : 'bg-zinc-950/70 text-zinc-400 border-white/10 hover:border-white/30 hover:text-white'
                   }`}
                 >
