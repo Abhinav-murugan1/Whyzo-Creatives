@@ -5,6 +5,7 @@ import { categoryRank, previewVideo, sizedAsset } from '../data/galleryItems';
 import { croppedPortrait } from '../lib/cloudinary';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 import {
+  ArrowDown,
   ArrowLeft,
   Check,
   Globe,
@@ -132,6 +133,17 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
    * unlabelled group, which is what the smaller hand-written rosters produce.
    */
   const works = useMemo(() => member?.works ?? [], [member]);
+
+  /*
+   * Smooth by default, instant for anyone who has asked the OS to cut motion - a long smooth scroll past
+   * five screens is exactly the kind of movement that setting exists to stop.
+   */
+  const handleViewWork = useCallback(() => {
+    const target = document.getElementById('member-work');
+    if (!target) return;
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  }, []);
   const shelves = useMemo(() => {
     const grouped = [];
     for (const work of works) {
@@ -323,6 +335,24 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
               <span className="mt-2.5 block text-xs sm:text-sm font-mono uppercase tracking-widest text-zinc-400">
                 {member.role}
               </span>
+
+              {/*
+                * Jump straight to the archive. On a phone the work grid sits below the portrait, the bio,
+                * the stats and the specialisations - a long way past the fold for the thing most visitors
+                * came to look at. Only rendered when there is an archive to jump to, so the members
+                * without one do not get a button that scrolls nowhere.
+                */}
+              {works.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleViewWork}
+                  className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-[11px] font-mono font-bold uppercase tracking-widest hover:bg-zinc-200 transition-colors cursor-pointer shadow-[inset_0_-1px_0_rgba(0,0,0,0.14)]"
+                >
+                  <span>View Work</span>
+                  <span className="font-mono text-black/50">{String(works.length).padStart(2, '0')}</span>
+                  <ArrowDown className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
 
             {/* Capped at a comfortable reading measure - the strip and grid below take the full width */}
@@ -330,9 +360,14 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
               {member.bio}
             </p>
 
-            {/* Discipline / Output / Accolades Strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="group/stat relative rounded-xl bg-zinc-950 border border-white/10 hover:border-white/25 transition-colors p-4 overflow-hidden">
+            {/*
+              * Below `sm` these collapse into one panel with hairline dividers instead of three separate
+              * bordered cards. Stacked, the cards cost three borders, three radii and two gaps of pure
+              * padding on the single most scroll-constrained screen, for information that reads perfectly
+              * well as a short list.
+              */}
+            <div className="rounded-xl border border-white/10 divide-y divide-white/10 sm:rounded-none sm:border-0 sm:divide-y-0 sm:grid sm:grid-cols-3 sm:gap-3">
+              <div className="group/stat relative bg-zinc-950 p-4 overflow-hidden sm:rounded-xl sm:border sm:border-white/10 sm:hover:border-white/25 transition-colors">
                 <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                 <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 block mb-1.5">
                   Discipline
@@ -343,7 +378,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
                 </div>
               </div>
 
-              <div className="group/stat relative rounded-xl bg-zinc-950 border border-white/10 hover:border-white/25 transition-colors p-4 overflow-hidden">
+              <div className="group/stat relative bg-zinc-950 p-4 overflow-hidden sm:rounded-xl sm:border sm:border-white/10 sm:hover:border-white/25 transition-colors">
                 <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                 <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 block mb-1.5">
                   Output
@@ -351,7 +386,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
                 <span className="text-xs sm:text-sm text-zinc-200 font-poppins">{member.stat}</span>
               </div>
 
-              <div className="group/stat relative rounded-xl bg-zinc-950 border border-white/10 hover:border-white/25 transition-colors p-4 overflow-hidden">
+              <div className="group/stat relative bg-zinc-950 p-4 overflow-hidden sm:rounded-xl sm:border sm:border-white/10 sm:hover:border-white/25 transition-colors">
                 <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                 <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 block mb-1.5">
                   Accolades
@@ -365,13 +400,20 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2.5">
                 CORE SPECIALIZATIONS & PIPELINE
               </span>
-              <div className={`grid grid-cols-1 sm:grid-cols-2 ${member.specialties.length % 3 === 0 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-3 text-xs sm:text-sm text-zinc-200 font-poppins`}>
+              {/*
+                * Chips on a phone, cards from `sm` up. Eight specialisations rendered as full-width
+                * numbered cards ran to roughly 480px of column - the single largest block between the
+                * top of the page and the work grid, for a list of short phrases. Wrapped inline they
+                * take about a quarter of that and read the same. The index numbers go with them: they
+                * were decoration, and at chip size they are noise.
+                */}
+              <div className={`flex flex-wrap gap-2 sm:gap-3 sm:grid sm:grid-cols-2 ${member.specialties.length % 3 === 0 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} text-xs sm:text-sm text-zinc-200 font-poppins`}>
                 {member.specialties.map((spec, idx) => (
                   <div
                     key={idx}
-                    className="rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/25 transition-colors px-3.5 py-3 text-zinc-200 leading-snug"
+                    className="rounded-full sm:rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/25 transition-colors px-3 py-1.5 sm:px-3.5 sm:py-3 text-zinc-200 leading-snug"
                   >
-                    <span className="block text-[9px] font-mono tracking-widest text-zinc-600 mb-1.5">
+                    <span className="hidden sm:block text-[9px] font-mono tracking-widest text-zinc-600 mb-1.5">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                     {spec}
@@ -389,7 +431,7 @@ const MemberPortfolio = ({ member, onBack, onSelectWork }) => {
         {/* than rendering an empty shelf with a "00 PROJECTS" heading.     */}
         {/* ============================================================= */}
         {works.length > 0 && (
-        <div className="reveal-in pt-10 border-t border-white/10 space-y-10" style={{ '--reveal-delay': '240ms' }}>
+        <div id="member-work" className="reveal-in scroll-mt-28 pt-10 border-t border-white/10 space-y-10" style={{ '--reveal-delay': '240ms' }}>
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2">
               // SELECTED WORK // {String(works.length).padStart(2, '0')} PROJECTS
