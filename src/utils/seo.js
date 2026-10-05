@@ -7,7 +7,7 @@ const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://whyzocreatives.com';
 
 const PAGE_META = {
   home: {
-    title: 'Whyzo Creatives // Creative Production Company',
+    title: 'Whyzo Creatives',
     description: 'Whyzo Creatives is a creative production company for brands, people and ideas that deserve more than basic content. Commercials, social content, campaigns, events and photography.',
     path: '/'
   },
