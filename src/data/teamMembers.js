@@ -15,7 +15,7 @@ const teamMembers = [
     icon: Camera,
     tag: 'DIRECTION & CINEMATOGRAPHY',
     stat: '8 Years Exp',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789737113/team/fayaz_founder.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/team/fayaz_founder.jpg',
     bio: 'A filmmaker and creative director with 8 years of experience turning ideas into visual stories. Working across commercial content, real estate, automotive, events, food, and social media, with a focus on cinematic visuals and sharp storytelling.',
     specialties: [
       'Cinematography & Visual Direction',
@@ -43,7 +43,7 @@ const teamMembers = [
     icon: Palette,
     tag: 'VISUAL STORYTELLING & DESIGN',
     stat: '8 Years Exp',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789739795/team/member_02.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/team/member_02.jpg',
     bio: 'A visual storyteller with 8 years of experience transforming ideas into engaging visual experiences. Working across branding, advertising, social media, sports & esports, packaging, and digital content, with a focus on creative concepts, visual communication, and impactful storytelling through design.',
     specialties: [
       'Visual Storytelling & Graphic Design',
@@ -70,7 +70,7 @@ const teamMembers = [
     icon: Clapperboard,
     tag: 'CONTENT & SOCIAL',
     stat: '3 Years Exp',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789902713/team/member_05.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/team/member_03.jpg',
     bio: 'Content creator with 3 years turning brand ideas into short-form video and social campaigns. Works the whole loop - concept, shoot, cut and the posting calendar that keeps a feed moving.',
     specialties: [
       'Short-Form & Social Video',
@@ -94,7 +94,7 @@ const teamMembers = [
     icon: Code2,
     tag: 'FULL STACK & UI/UX ARCHITECTURE',
     stat: 'Modern Full-Stack',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789741005/team/member_04.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/team/member_04.jpg',
     /* Wide landscape frame - subject sits small and low, so the card crops in on him */
     portraitCrop: 'c_crop,x_128,y_350,w_542,h_650',
     bio: 'A full stack developer and creative technologist building modern digital experiences at the intersection of design and engineering. Specializing in responsive web platforms, cross-platform mobile apps, robust backend systems, and detail-focused UI/UX design to transform ideas into scalable, intuitive digital products.',

@@ -1,5 +1,5 @@
 import cloudinaryAssets from './cloudinaryAssets.json';
-import { previewVideo, sizedAsset } from '../lib/cloudinary';
+import { previewVideo, sizedAsset } from '../lib/cloudinary.js';
 
 /*
  * The gallery wall draws from every asset published to Cloudinary. The entries below are the curated
@@ -18,8 +18,8 @@ const curatedWork = [
     categoryLabel: 'Automotive Cinema',
     client: 'Scuderia Performance',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789576675/automotive/oppl7ldj0h0ebzejzkqb.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789576675/automotive/oppl7ldj0h0ebzejzkqb.mov',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/FERRARI_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/FERRARI.mp4',
     metrics: '4.8M Impressions // 120mph Precision Cinema',
     deliverables: ['Dynamic High-Speed Tracking', 'Anamorphic Lens Master', 'Cockpit Sound Design', 'Social Campaign Cuts'],
     description: 'High-speed track pursuit and dynamic precision tracking capturing the raw power and aerodynamic lines of the Ferrari SF90.'
@@ -31,8 +31,8 @@ const curatedWork = [
     categoryLabel: 'Automotive Cinema',
     client: 'McLaren Automotive',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577408/automotive/MCLAREN.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577408/automotive/MCLAREN.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/MCLAREN_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/MCLAREN.mp4',
     metrics: '2.1M Organic Views // 98% Engagement Lift',
     deliverables: ['Studio Anamorphic Shoot', 'Carbon Fiber Macro Study', 'Sound Design Score', 'Vertical Reels Suite'],
     description: 'Cinematic studio and track profile highlighting sculpted carbon fiber details and aggressive engineering.'
@@ -44,8 +44,8 @@ const curatedWork = [
     categoryLabel: 'Automotive Cinema',
     client: 'Lamborghini Squadra',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577428/automotive/URUSS.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577428/automotive/URUSS.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/URUSS_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/automotive/URUSS.mp4',
     metrics: '3.6M Views // International Campaign',
     deliverables: ['Rolling Gimbal Rigging', 'Exhaust Audio Capture', 'Color Grading Master'],
     description: 'Aggressive street and highway rolling cinema showcasing the commanding stance and twin-turbo presence of the Urus.'
@@ -57,8 +57,8 @@ const curatedWork = [
     categoryLabel: 'CGI & 3D Simulation',
     client: 'Maison Elysian Parfums',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577434/cgi/PERFUME.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577434/cgi/PERFUME.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/cgi/PERFUME_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/cgi/PERFUME.mp4',
     metrics: 'Awwwards Site Feature // 100% Fluid Dynamics Simulation',
     deliverables: ['Photorealistic 3D Bottle Model', 'Viscous Fluid Physics', 'Subsurface Glass Shading', 'Spatial Audio Mix'],
     description: 'Ultra-realistic 3D fluid simulation and refractive glass rendering demonstrating luxury fragrance diffusion in zero gravity.'
@@ -70,8 +70,8 @@ const curatedWork = [
     categoryLabel: 'Corporate & Architecture',
     client: 'Nexus Global Exhibitions',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577472/corporate/opt_STAND_BUILD_UP.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577472/corporate/opt_STAND_BUILD_UP.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/corporate/STAND_BUILD_UP_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/corporate/STAND_BUILD_UP.mp4',
     metrics: '4-Day Continuous Capture // 8K Master Production',
     deliverables: ['High-Precision Timelapse', 'Motion Controlled Pan', 'B2B Case Film', 'Stakeholder Deck Video'],
     description: 'Multi-day architectural exhibition build timelapse capturing complex structural assembly and high-end lighting integration.'
@@ -83,24 +83,24 @@ const curatedWork = [
     categoryLabel: 'Corporate & Keynotes',
     client: 'Apex Tech Forum',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577504/corporate/opt_WEB_FORUM.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577504/corporate/opt_WEB_FORUM.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/corporate/WEB_FORUM_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/corporate/WEB_FORUM.mp4',
     metrics: '12,000 Global Streamers // Keynote Archive',
     deliverables: ['Multi-Cam Keynote Coverage', 'Speaker Spotlight Reels', 'Live Broadcast Edit', 'Corporate Summary Film'],
     description: 'Executive keynote capture and broadcast summary for the international digital technology and innovation conference.'
   },
   {
     id: 'work-event-01',
-    title: 'Electric Odyssey Festival Carnival',
+    title: 'GISEC Global Cyber Security Expo',
     category: 'events',
-    categoryLabel: 'Live Events & Festivals',
-    client: 'Odyssey Entertainment',
-    year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577509/events/CARNIVAL.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577509/events/CARNIVAL.mp4',
-    metrics: '50,000 Attendees // 100% Sold Out',
-    deliverables: ['Multi-Cam Stage Capture', 'Low-Light Cinema Grade', 'Dynamic Aftermovie', 'Social Teaser Clips'],
-    description: 'Electrifying low-light festival aftermovie capturing neon pyrotechnics, crowd energy, and hypnotic stage performances.'
+    categoryLabel: 'Live Events & Expos',
+    client: 'Dubai World Trade Centre',
+    year: '2025',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GISEC_2025_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GISEC_2025.mp4',
+    metrics: '35,000 Delegates // Cyber Defense Summit',
+    deliverables: ['Keynote & Mainstage Coverage', 'AI Security Booth Spotlights', 'Fast-Paced Motion Graphics', 'PR Package'],
+    description: 'High-octane aftermovie and stage capture highlighting world-leading cyber tech breakthroughs, live hacking arenas, and global delegations at GISEC.'
   },
   {
     id: 'work-event-02',
@@ -109,8 +109,8 @@ const curatedWork = [
     categoryLabel: 'Live Events & Expos',
     client: 'Messe Frankfurt ME',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577517/events/INTRO_INTERSEC.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577517/events/INTRO_INTERSEC.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/INTRO_INTERSEC_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/INTRO_INTERSEC.mp4',
     metrics: '30,000 Trade Delegates // International Expo Launch',
     deliverables: ['Exhibition Opener Film', 'High-Energy Sound Design', 'LED Stage Master', 'Social Announcement'],
     description: 'High-octane opening presentation film premiered across multi-panel stage displays for the world premier security expo.'
@@ -122,8 +122,8 @@ const curatedWork = [
     categoryLabel: 'Live Events & Expos',
     client: 'Dubai World Trade Centre',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577552/events/opt_GITEX_2025.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577552/events/opt_GITEX_2025.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GITEX_2025_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GITEX_2025.mp4',
     metrics: '180+ Countries // World Largest Tech Event',
     deliverables: ['Conference Aftermovie', 'Robotics & AI Booth Spotlights', 'Fast-Paced Motion Graphics', 'PR Package'],
     description: 'Comprehensive documentary aftermovie capturing the breakthroughs, AI robotics showcases, and VIP delegations at GITEX.'
@@ -131,12 +131,12 @@ const curatedWork = [
   {
     id: 'work-fb-01',
     title: 'AMARA Luxury Dining & Mixology',
-    category: 'f&b',
+    category: 'fb',
     categoryLabel: 'Food & Beverage Cinema',
     client: 'AMARA Hospitality',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789578219/fb/AMARA.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789578219/fb/AMARA.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/AMARA_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/AMARA.mp4',
     metrics: '2.9M Impressions // 48% Table Booking Lift',
     deliverables: ['Culinary Commercial Film', 'Artisanal Plating Stills', 'Instagram Reels Campaign', 'Signature Menu Assets'],
     description: 'Sensory gastronomy cinematography highlighting artisanal ingredients, flame searing, and bespoke cocktail mixology.'
@@ -144,12 +144,12 @@ const curatedWork = [
   {
     id: 'work-fb-02',
     title: 'Le Bistro Gastronomic Atmosphere',
-    category: 'f&b',
+    category: 'fb',
     categoryLabel: 'Food & Beverage Cinema',
     client: 'Le Bistro Parisien',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789578225/fb/BISTRO_2.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789578225/fb/BISTRO_2.mov',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/BISTRO_BOTTLE_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/BISTRO_BOTTLE.mp4',
     metrics: '1.7M Views // Michelin Guide Mention',
     deliverables: ['Atmospheric Venue Cinema', 'Chef Kitchen Action Master', 'Fine Dining Audio Design'],
     description: 'Warm, moody fine-dining narrative capturing the kinetic rhythm of an elite kitchen and Parisian culinary heritage.'
@@ -157,28 +157,28 @@ const curatedWork = [
   {
     id: 'work-fb-03',
     title: 'MDC Reserve Wine Pour & Cellar',
-    category: 'f&b',
+    category: 'fb',
     categoryLabel: 'Food & Beverage Cinema',
     client: 'MDC Heritage Vineyards',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789578246/fb/MDC_WINE.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789578246/fb/MDC_WINE.mov',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/MDC_WINE_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/MDC_WINE.mp4',
     metrics: '4K Macro Probe Lens // Sommelier Campaign',
     deliverables: ['Macro Fluid Pour Cinema', 'Sommelier Tasting Suite', 'Vintage Label Master'],
     description: 'Extreme slow-motion probe lens cinematography capturing vintage wine aeration and cellar ambience.'
   },
   {
     id: 'work-inf-01',
-    title: 'Starbucks Crafted Lifestyle Campaign',
+    title: 'Gang of Girls Creator Campaign',
     category: 'influencer',
     categoryLabel: 'Creator & Influencer',
-    client: 'Starbucks Coffee ME',
+    client: 'GOG Collective',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577587/influencer/STARBUCKS.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577587/influencer/STARBUCKS.mp4',
-    metrics: '5.2M Social Impressions // 18.4% Viral Share Rate',
-    deliverables: ['Dynamic Creator Vlog Cut', 'Product Placement Sequence', 'High-Energy Audio Transitions', 'TikTok/Reels Master'],
-    description: 'High-energy lifestyle narrative and creator collaboration elevating daily coffee rituals into cinematic brand storytelling.'
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/influencer/GANG_OF_GIRLS_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/influencer/GANG_OF_GIRLS.mp4',
+    metrics: '4.8M Social Impressions // 22% Engagement Lift',
+    deliverables: ['Dynamic Creator Vlog Cut', 'Lifestyle Fashion Sequences', 'High-Energy Audio Mix', 'Vertical Reels Suite'],
+    description: 'Vibrant, high-energy fashion and lifestyle creator collaboration capturing aesthetic streetwear, sisterhood vibes, and urban energy.'
   },
   {
     id: 'work-inf-02',
@@ -187,8 +187,8 @@ const curatedWork = [
     categoryLabel: 'Creator & Influencer',
     client: 'Nautilus Watersports',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577595/influencer/JETSKI_OUT.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577595/influencer/JETSKI_OUT.mov',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/influencer/JETSKI_OUT_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/influencer/JETSKI_OUT.mp4',
     metrics: '3.1M Views // Dubai Marina Campaign',
     deliverables: ['FPV Water Tracking', 'Gimbal Chase Shots', 'Color Pop Grade', 'Action Sound Mix'],
     description: 'Adrenaline-fueled water adventure tracking high-speed jet ski maneuvers along the Dubai coast with crystal-clear wake.'
@@ -200,36 +200,36 @@ const curatedWork = [
     categoryLabel: 'Luxury Real Estate',
     client: 'Joelle Raad Interiors',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577606/realestate/JOELLE_RAAD.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577606/realestate/JOELLE_RAAD.mov',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/realestate/JOELLE_RAAD_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/realestate/JOELLE_RAAD.mp4',
     metrics: '$18M Listing Sold // Architectural Digest Showcase',
     deliverables: ['Architectural Glide Cinema', 'Golden Hour Lighting Study', 'Interior Detail Showcase', 'VIP Buyer Walkthrough'],
     description: 'Bespoke interior design showcase and architectural cinematography highlighting Italian marble, custom carpentry, and bespoke fixtures.'
   },
   {
     id: 'work-re-02',
-    title: 'Palm Jumeirah Ultra-Villa Tour',
+    title: 'Tilal Al Ghaf Waterfront Villa Tour',
     category: 'realestate',
     categoryLabel: 'Luxury Real Estate',
-    client: 'Ellington Properties',
+    client: 'Majid Al Futtaim Communities',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577626/realestate/opt_VILLA.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577626/realestate/opt_VILLA.mp4',
-    metrics: '$32M Waterfront Estate // Private Client Close',
-    deliverables: ['Drone Aerial Flythrough', 'Steadicam Interior Master', 'Infinity Pool Sunset Cine', 'Digital Sales Suite'],
-    description: 'Seamless FPV drone and steadicam tour gliding from panoramic beachfront terraces through double-height minimalist living spaces.'
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/realestate/TILAL_NEW_YT_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/realestate/TILAL_NEW_YT.mp4',
+    metrics: '$25M Lagoon Estate // Private Client Showcase',
+    deliverables: ['Lagoon Aerial Flythrough', 'Steadicam Interior Master', 'Golden Hour Lighting Study', 'Digital Sales Suite'],
+    description: 'Ultra-luxury architectural tour and cinematic walkthrough gliding across lagoon waterfront terraces and bespoke marble living spaces.'
   },
   {
     id: 'work-sport-01',
-    title: 'Topspin Pro Tennis Cinematic Action',
+    title: 'Topspin Pro Tennis Tournament Cinema',
     category: 'sports',
     categoryLabel: 'Sports & Athletics',
     client: 'Topspin Sports Academy',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577636/sports/TOPSPIN_3.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577636/sports/TOPSPIN_3.mp4',
-    metrics: '4K 120FPS High-Speed // 2.4M Views',
-    deliverables: ['120FPS Slow-Motion Replays', 'Court Sound Foley', 'Player Spotlight Reel', 'Commercial Spot'],
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/sports/TOPSPIN_EVENT_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/sports/TOPSPIN_EVENT.mp4',
+    metrics: '4K High-Speed // 2.4M Views',
+    deliverables: ['Slow-Motion Replays', 'Court Sound Foley', 'Player Spotlight Reel', 'Commercial Spot'],
     description: 'Explosive baseline serves and intense court rallies captured in ultra-high frame rates to reveal elite athletic technique.'
   },
   {
@@ -239,8 +239,8 @@ const curatedWork = [
     categoryLabel: 'Sports & Athletics',
     client: 'Topspin Athletics',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577672/sports/opt_TOPSPIN.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577672/sports/opt_TOPSPIN.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/sports/TOPSPIN_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/sports/TOPSPIN.mp4',
     metrics: '98% Positive Sentiment // Athlete Recruitment',
     deliverables: ['Court-Level Handheld Rig', 'Heavy Impact Sound Mix', 'Training Highlights Cut'],
     description: 'Intimate courtside tracking following rapid footwork, racket impact, and coaching intensity.'
@@ -252,7 +252,7 @@ const curatedWork = [
     categoryLabel: 'Commercial Photography',
     client: 'Vanguard Timepieces',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789577676/photos/opt_WATCH.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/product/WATCH.jpg',
     video: null,
     metrics: '100MP Medium Format Studio Stills // Print Campaign',
     deliverables: ['High-Fashion Strobe Lighting', 'Focus Stacked Macro Retouch', 'Billboard Ready Masters', 'Lookbook Print Files'],
@@ -265,7 +265,7 @@ const curatedWork = [
     categoryLabel: 'Commercial Photography',
     client: 'Aether Acoustic Labs',
     year: '2026',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789577678/photos/opt_HEADPHONES.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/product/HEADPHONES.jpg',
     video: null,
     metrics: 'Global E-Commerce Launch // 3x Conversion Rate',
     deliverables: ['Product Hero Stills', 'Material Texture Macro', 'Packaging Visuals', 'Digital Campaign Assets'],
@@ -275,10 +275,10 @@ const curatedWork = [
     id: 'work-photo-03',
     title: 'Artisanal Culinary Still Life',
     category: 'photos',
-    categoryLabel: 'Editorial Photography',
+    categoryLabel: 'Commercial Photography',
     client: 'MDC Haute Cuisine',
     year: '2025',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789577679/photos/MDC-134.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/fb/MDC-134.jpg',
     video: null,
     metrics: 'Culinary Arts Award Feature // Editorial Cover',
     deliverables: ['Moody Chiaroscuro Lighting', 'Natural Texture Framing', 'High-Res Print Masters'],
@@ -313,10 +313,28 @@ const FOLDER_CATEGORIES = {
 
 /* Hand-set names for assets whose filename says nothing useful about the client or subject */
 const TITLE_OVERRIDES = {
-  'automotive/lmbo': 'Lamborghini',
-  'automotive/Comp_1_2-2_1': 'Simple Electric Scooter',
-  'corporate/opt_AMANA_FINAL_4K': 'Amana Group of Companies',
-  'corporate/opt_AWS': 'Proximity Works'
+  'automotive/lmbo': 'Lamborghini Huracán',
+  'automotive/Comp_1_1-1': 'Desert Supercar Cinema',
+  'automotive/Comp_1_2-2_1': 'Simple ONE Electric Profile',
+  'corporate/AMANA_FINAL_4K': 'Amana Healthcare & Construction',
+  'corporate/opt_AMANA_FINAL_4K': 'Amana Healthcare & Construction',
+  'corporate/AWS': 'AWS Cloud Innovation Summit',
+  'corporate/opt_AWS': 'AWS Cloud Innovation Summit',
+  'corporate/RTA': 'Dubai RTA Infrastructure Cinema',
+  'events/ADIPEC': 'ADIPEC World Energy Conference',
+  'events/GISEC_2025': 'GISEC Global Cyber Security Expo',
+  'events/GITEX_2024': 'GITEX Global 2024 Tech Summit',
+  'fb/MCD_SUSHI': 'MCD Artisanal Sushi Gastronomy',
+  'fb/MDC_FINAL': 'MDC Heritage Reserve Presentation',
+  'podcast/math_pod_9': 'Math Podcast Ep 09',
+  'podcast/P2': 'Future Tech & Business Podcast Ep 02',
+  'fb/DROPSHOT': 'Dropshot Cafe & Dining',
+  'fb/BISTRO': 'Le Bistro Parisien Atmosphere',
+  'fb/FOOD_2': 'Artisanal Culinary Gastronomy',
+  'fb/MDC_NEW': 'MDC Caviar & Champagne Showcase',
+  'fb/MIST_2': 'Mist Lounge Dining & Mixology',
+  'sports/DROPSHOT': 'Dropshot Cafe & Dining',
+  'sports/TOPSPIN_ALEXA': 'Topspin Athlete Showcase'
 };
 
 const FOLDER_LABELS = {
@@ -332,7 +350,7 @@ const GENERIC_TITLES = {
   'photos/party': 'Nightlife Frame',
   'photos/product': 'Product Study',
   'photos/podcast': 'Podcast Feature',
-  photos: 'Studio Still',
+  photos: 'Commercial Still',
   automotive: 'Automotive Sequence',
   corporate: 'Corporate Sequence',
   events: 'Event Sequence',
@@ -397,7 +415,7 @@ const genericTitle = key => {
   return `${GENERIC_TITLES[key] || 'Studio Frame'} ${String(genericCounters[key]).padStart(2, '0')}`;
 };
 
-const groupLabelFor = key => FOLDER_LABELS[key] || CATEGORY_LABELS[key] || 'Studio Production';
+const groupLabelFor = key => FOLDER_LABELS[key] || CATEGORY_LABELS[key] || 'Commercial Photography';
 
 /*
  * The nine shelves the work is filed under, in the order they are presented. Cloudinary sub-folders
@@ -426,13 +444,13 @@ export const categoryRank = key => {
 const curatedFor = asset =>
   curatedWork.find(
     work =>
-      (work.image && work.image.includes(`/${asset.publicId}.`)) ||
+      (work.image && (work.image.includes(`/${asset.publicId}.`) || work.image.includes(`/${asset.publicId}_poster.`))) ||
       (work.video && work.video.includes(`/${asset.publicId}.`)),
   ) || null;
 
 /*
- * Every publishable asset in Cloudinary, in manifest order, with curated copy overlaid wherever a
- * case study covers the asset. `group` is the Cloudinary shelf the asset actually sits on — the
+ * Every publishable asset in Cloudinary/R2, in manifest order, with curated copy overlaid wherever a
+ * case study covers the asset. `group` is the shelf the asset actually sits on — the
  * PHOTOS/ sub-folder where there is one, the category otherwise — so a profile can present the work
  * exactly as it is filed. Curated entries carry their own richer `categoryLabel` for the card badge,
  * which is why grouping keys off `group` rather than that label.
@@ -445,16 +463,19 @@ export const workCatalogue = Object.values(cloudinaryAssets)
       asset.category !== 'general' &&
       asset.category !== 'team' &&
       asset.folder !== 'team' &&
-      !asset.publicId.startsWith('team/')
+      !asset.publicId.startsWith('team/') &&
+      (!asset.secureUrl || !asset.secureUrl.includes('cloudinary.com'))
   )
   .map(asset => {
-    const rawCategory = normalizeCategory(asset.category);
-    const folder = asset.folder || rawCategory;
+    // All photography assets are consolidated under Commercial Photography ('photos')
+    const isPhoto = asset.resourceType === 'image';
+    const rawCategory = isPhoto ? 'photos' : normalizeCategory(asset.category);
+    const folder = isPhoto ? 'photos' : (asset.folder || rawCategory);
     // A sub-folder may carry its own shelf (podcast) and, either way, a better card label than the category
-    const category = FOLDER_CATEGORIES[folder] || rawCategory;
-    const labelKey = FOLDER_LABELS[folder] ? folder : category;
+    const category = isPhoto ? 'photos' : (FOLDER_CATEGORIES[folder] || rawCategory);
+    const labelKey = isPhoto ? 'photos' : (FOLDER_LABELS[folder] ? folder : category);
     // Shelf is the top-level category; labelKey only refines the label printed on the card itself
-    const shelf = { category, group: category, groupLabel: CATEGORY_LABELS[category] || 'Studio Production' };
+    const shelf = { category, group: category, groupLabel: CATEGORY_LABELS[category] || 'Commercial Photography' };
 
     const curated = curatedFor(asset);
     if (curated) return { ...curated, ...shelf };

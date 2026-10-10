@@ -26,8 +26,8 @@ const servicesData = [
     icon: Video,
     shortDesc: 'Cinematic 4K/8K commercial film, brand documentaries, and anamorphic multi-cam production.',
     details: 'Our videography team deploys RED Cinema and Sony FX Series cameras paired with Cooke anamorphic optics to capture breathtaking imagery that commands viewer attention and drives brand prestige.',
-    image: 'https://res.cloudinary.com/hbmeplwl/video/upload/so_0,f_jpg,q_auto/v1789577552/events/opt_GITEX_2025.jpg',
-    video: 'https://res.cloudinary.com/hbmeplwl/video/upload/v1789577552/events/opt_GITEX_2025.mp4',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GITEX_2025_poster.jpg',
+    video: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/events/GITEX_2025.mp4',
     hardware: ['RED V-Raptor 8K VV', 'Cooke Anamorphic Glass', 'DJI Ronin 4D Rig', 'Heavy-Lift Cinema Drones'],
     deliverables: [
       'Commercial Brand Spots (16:9 & 9:16)',
@@ -47,7 +47,7 @@ const servicesData = [
     icon: Camera,
     shortDesc: 'High-fashion lookbooks, F&B culinary art, automotive track, and executive studio portraiture.',
     details: 'Precision strobe lighting and 100MP medium-format sensors deliver publication-ready imagery engineered for high-impact digital campaigns, luxury billboards, and print collateral.',
-    image: 'https://res.cloudinary.com/hbmeplwl/image/upload/v1789581879/photos/product/opt_MC_AIRPODS.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/product/MC_AIRPODS.jpg',
     hardware: ['Phase One 100MP System', 'Profoto Pro-11 Strobe Kit', 'Hasselblad HC Glass', 'Tethered 4K Review Station'],
     deliverables: [
       'High-Fashion & Lookbooks',

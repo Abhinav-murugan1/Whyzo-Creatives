@@ -14,7 +14,17 @@ const TRANSFORM_TOKEN = /^[a-z]{1,3}_[^,/]+/;
  * Returns the input untouched for non-Cloudinary URLs, or when a width is already pinned.
  */
 export const sizedAsset = (url, width = 800) => {
-  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
+  if (!url) return url;
+  if (url.includes('.r2.dev') || url.includes('.r2.cloudflarestorage.com')) {
+    // Video poster thumbnails are already single extracted frames, don't rewrite to _800.jpg
+    if (url.includes('_poster.jpg')) return url;
+    // If an 800px thumbnail exists, prefer it when width <= 800
+    if (width <= 800 && url.endsWith('.jpg') && !url.includes('_800.jpg')) {
+      return url.replace(/\.jpg$/, '_800.jpg');
+    }
+    return url;
+  }
+  if (!url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
   if (/\/[wh]_\d+/.test(url)) return url;
 
   const splitIndex = url.indexOf('/upload/');
@@ -50,7 +60,11 @@ export const sizedAsset = (url, width = 800) => {
  */
 export const croppedPortrait = (url, crop, width = 800) => {
   if (!crop) return sizedAsset(url, width);
-  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
+  if (!url) return url;
+  if (url.includes('.r2.dev') || url.includes('.r2.cloudflarestorage.com')) {
+    return sizedAsset(url, width);
+  }
+  if (!url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url;
   return url.replace('/upload/', `/upload/${crop}/f_auto,q_auto,w_${width},c_limit/`);
 };
 
@@ -60,6 +74,10 @@ export const croppedPortrait = (url, crop, width = 800) => {
  */
 export const previewVideo = url => {
   if (!url) return null;
+  if (url.includes('.r2.dev') || url.includes('.r2.cloudflarestorage.com')) {
+    if (url.includes('_preview.mp4')) return url;
+    return url.replace(/\.(mp4|mov|webm)$/i, '_preview.mp4');
+  }
   if (!url.includes('cloudinary.com') || !url.includes('/upload/')) return url;
 
   const mp4 = url.replace(/\.(mov|webm|mkv)$/i, '.mp4');

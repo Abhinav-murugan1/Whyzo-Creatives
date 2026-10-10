@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './DriftWall.css';
-import { sizedAsset } from '../../lib/cloudinary';
+import { sizedAsset, previewVideo } from '../../lib/cloudinary';
 
 const DEFAULT_ITEMS = Array.from({ length: 15 }, (_, i) => {
   const ids = [1015, 1025, 1039, 1043, 1044, 1050, 1062, 1069, 1074, 1080, 1084, 106, 110, 133, 164];
@@ -63,16 +63,8 @@ const DriftTile = ({
 
   const posterSrc = useMemo(() => sizedAsset(item.image, 600), [item.image]);
 
-  // Use ultra-fast Cloudinary web preview transform (480p, eco quality) for silky-smooth 60fps wall motion
-  const previewSrc = useMemo(() => {
-    if (!item.video) return null;
-    if (item.video.includes('cloudinary.com') && item.video.includes('/upload/')) {
-      let v = item.video.replace(/\.(mov|webm|mkv)$/i, '.mp4');
-      if (v.includes('/w_480')) return v;
-      return v.replace('/upload/', '/upload/w_480,q_auto:eco,vc_h264,f_mp4/');
-    }
-    return item.video;
-  }, [item.video]);
+  // Use lightweight 480p preview stream for silky-smooth 60fps wall motion
+  const previewSrc = useMemo(() => previewVideo(item.video), [item.video]);
 
   /*
    * Observe tile visibility to virtualize video decoding (only decode tiles in or near view).
