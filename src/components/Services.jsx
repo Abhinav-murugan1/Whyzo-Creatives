@@ -47,7 +47,7 @@ const servicesData = [
     icon: Camera,
     shortDesc: 'High-fashion lookbooks, F&B culinary art, automotive track, and executive studio portraiture.',
     details: 'Precision strobe lighting and 100MP medium-format sensors deliver publication-ready imagery engineered for high-impact digital campaigns, luxury billboards, and print collateral.',
-    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/product/MC_AIRPODS.jpg',
+    image: 'https://pub-2f10f2730a564fb78e256c70fd23585d.r2.dev/photos/MC_AIRPODS.jpg',
     hardware: ['Phase One 100MP System', 'Profoto Pro-11 Strobe Kit', 'Hasselblad HC Glass', 'Tethered 4K Review Station'],
     deliverables: [
       'High-Fashion & Lookbooks',
